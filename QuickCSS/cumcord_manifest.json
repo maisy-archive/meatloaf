@@ -1,0 +1,7 @@
+{
+  "name": "QuickCSS",
+  "description": "Adds a prompt in Settings to apply CSS.",
+  "author": "Beef",
+  "file": "index.js",
+  "license": "Unlicense"
+}
