@@ -1,5 +1,3 @@
-import { React } from "@cumcord/modules/common";
-
 import { webpackModules } from "@cumcord/modules";
 const TextArea = webpackModules.findByDisplayName("TextArea");
 
