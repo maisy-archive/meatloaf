@@ -2,8 +2,8 @@
 
 This repo contains my [Cumcord](https://github.com/Cumcord/Cumcord/) plugins. To use them you should copy one of the following link into the Cumcord settings.
 
-- [hello-world](https://cc.remty.xyz/hello-world/)
-- [spec!al ch@rs test](https://cc.remty.xyz/spec!al%20ch@rs%20test/)
+- [QuickCSS](https://beefers.github.io/meatloaf/QuickCSS/)
+- [cumzality](https://beefers.github.io/meatloaf/cumzality/)
 
 ---
 
