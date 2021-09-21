@@ -13,7 +13,7 @@ export default (props) => {
     return (
         <div className="cumcord-quickcss">
             <FormTitle className="cumcord-quickcss-formtitle" tag="h1">Quick CSS</FormTitle>
-            <HelpMessage className="cumcord-quickcss-helpmessage" messageType={0}>This does not save! Cumcord does not have a storage API that plugins can use, yet. When that is available, I'll update this plugin accordingly.</HelpMessage>
+            <HelpMessage className="cumcord-quickcss-helpmessage" messageType={0}>This does not save! Yes, I know, the storage API is available now, but I'm lazy!</HelpMessage>
             <FormDivider className="cumcord-quickcss-formdivider"/>
             <QuickCSSInput className="cumcord-quickcss-input" />
         </div>
