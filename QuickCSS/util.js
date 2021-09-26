@@ -12,12 +12,3 @@ export function unpatchAllQuickCSS() {
         style.remove();
     }
 }
-
-export function getQuickCSS() {
-    let quickCSS = document.querySelector('.CUMCORD_QUICK_CSS');
-    if (quickCSS) {
-        return quickCSS.textContent;
-    } else {
-        return;
-    }
-}

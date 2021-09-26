@@ -2,6 +2,6 @@
   "name": "QuickCSS",
   "description": "Adds a prompt in Settings to apply CSS.",
   "author": "Beef",
-  "file": "index.js",
+  "file": "index.jsx",
   "license": "Unlicense"
 }
