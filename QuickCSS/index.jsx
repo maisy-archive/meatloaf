@@ -1,15 +1,11 @@
 import { patcher } from "@cumcord";
-import { webpackModules } from "@cumcord/modules";
-
-import { unpatchAllQuickCSS, injectQuickCSS } from "./util";
-
-const TextArea = webpackModules.findByDisplayName("TextArea");
+import QuickCSS from './components/QuickCSS';
+import { unpatchAllQuickCSS } from "./util";
 
 // let settingsPatch;
 let css;
 
 export default(data) => {
-    const cssStore = data.persist.store;
     return {
         onLoad() {
             //! Deprecated settings patch
@@ -40,11 +36,6 @@ export default(data) => {
             css();
             unpatchAllQuickCSS();
         },
-        settings: <div className="cumcord-quickcss">
-                    <TextArea
-                        rows={20}
-                        onChange={e => { unpatchAllQuickCSS(); injectQuickCSS(e); cssStore.css = e; }}
-                    />
-                </div>,
+        settings: QuickCSS(data),
     }
 };
