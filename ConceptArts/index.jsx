@@ -4,10 +4,10 @@ const ModalComponents = findByProps('ModalCloseButton');
 const Header = findByDisplayName('Header');
 const Flex = findByDisplayName('Flex');
 const NitroLogo = findByDisplayName('UserSettingsPremiumSubscriptionsIcon');
-const NitroStacked = findByDisplayName('NitroStackedIcon');
+// const NitroStacked = findByDisplayName('NitroStackedIcon');
 
 // import css from './css/main.css';
-let uninjectCSS;
+// let uninjectCSS;
 
 import ModalContent from "./react/ModalContent";
 
@@ -21,12 +21,12 @@ export default(data) => {
           return (
             <ModalComponents.ModalRoot
               transitionState={e.transitionState}
-              size="medium"
+              size="large"
             >
               <ModalComponents.ModalHeader separator={false}>
                 <Flex.Child basis="auto" grow={1} shrink={1} wrap={false}>
                   <Header tag="h2" size={Header.Sizes.SIZE_20}>
-                    <NitroLogo/> Discord Nitro
+                    <NitroLogo/> Discoins - imagine a currency
                   </Header>
                 </Flex.Child>
                 <Flex.Child basis="auto" grow={0} shrink={1} wrap={false}>
@@ -41,7 +41,7 @@ export default(data) => {
         });
       },
       onUnload() {
-        uninjectCSS();
+        // uninjectCSS();
       },
   }
 };
