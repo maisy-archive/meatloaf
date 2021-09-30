@@ -1,7 +1,7 @@
 {
   "name": "QuickCSS",
-  "description": "Adds a prompt in Settings to apply CSS.",
-  "author": "Beef",
-  "file": "index.jsx",
-  "license": "Unlicense"
+  "description": "Adds a CSS prompt to add CSS3 to your client.",
+  "author": "Beef & Molten",
+  "file": "src/index.jsx",
+  "license": "MIT"
 }
