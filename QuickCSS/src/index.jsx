@@ -2,13 +2,12 @@ import { patcher } from "@cumcord";
 import { webpack } from "@cumcord/modules";
 import { useNest } from "@cumcord/utils";
 
-let patchedQuickCSS = ""
-
+let patchedQuickCSS = "";
 const TextArea = webpack.findByDisplayName("TextArea");
 
 function Settings(props) {
     let nest = props.data.persist;
-    useNest(nest)
+    useNest(nest);
 
     return (
         <>
