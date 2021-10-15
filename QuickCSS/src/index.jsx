@@ -15,7 +15,7 @@ function Settings(props) {
                 className="cumcord-quickcss"
                 value={nest.ghost.css}
                 rows={30}
-                onChange={val => { nest.store.css = val; if(props.patchedQuickCSS) patchedQuickCSS(); patchedQuickCSS = patcher.injectCSS(nest.ghost.css) }}
+                onChange={val => { nest.store.css = val; patchedQuickCSS(nest.ghost.css); }}
             />            
         </>
     )
