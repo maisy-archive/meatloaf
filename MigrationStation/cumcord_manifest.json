@@ -1,0 +1,7 @@
+{
+  "name": "MigrationStation",
+  "description": "An easy to use utility to backup and restore a Cumcord install.",
+  "author": "Beef",
+  "file": "src/index.js",
+  "license": "BSD-3-Clause"
+}
