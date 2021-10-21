@@ -1,0 +1,1 @@
+(function(t){"use strict";function e(r){return t.React.createElement(t.React.Fragment,null,"MigrationStation does nothing right now. Sorry!")}var n=r=>({onLoad(){},onUnload(){},settings:t.React.createElement(e)});return n})(cumcord.modules.common);
