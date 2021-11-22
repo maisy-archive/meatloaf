@@ -30,6 +30,7 @@ jobs:
                   for plugin in */
                   do
                     cd "$plugin"
+                    npm i 2> /dev/null || true
                     sperm build --outdir "../.dist/$plugin"
                     cd ..
                   done
