@@ -5,7 +5,7 @@ import Settings from "./Settings";
 
 import { createElement } from "@cumcord/modules/common/React";
 
-export default (data) => {
+export default () => {
   data.patchedQuickCSS = injectCSS(data.persist.ghost.css);
   let editorStyles = styles();
 
