@@ -2,6 +2,6 @@
   "name": "QuickCSS",
   "description": "Adds a CSS prompt to add CSS3 to your client.",
   "author": "Beef & Molten",
-  "file": "src/index.jsx",
+  "file": "src/index.js",
   "license": "BSD-3-Clause"
 }
