@@ -2,7 +2,7 @@
 
 This repo contains my [Cumcord](https://github.com/Cumcord/Cumcord/) plugins. To use them you should copy and paste a plugin's link following this basic format:
 
-https://beefers.github.io/meatloaf/<plugin name>/
+https://beefers.github.io/meatloaf/<plugin name>
   
 Alternatively, find all my plugins on the Cumdump.
 
