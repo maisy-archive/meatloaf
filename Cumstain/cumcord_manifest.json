@@ -1,7 +1,0 @@
-{
-  "name": "Cumstain",
-  "description": "A themer for Cumcord, which functions similar to the built-in plugin manager.",
-  "author": "Beef",
-  "file": "src/index.js",
-  "license": "BSD-3-Clause"
-}
