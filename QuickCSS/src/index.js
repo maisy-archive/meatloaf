@@ -6,14 +6,14 @@ import Settings from "./Settings";
 import { createElement } from "@cumcord/modules/common/React";
 
 export default () => {
-  data.patchedQuickCSS = injectCSS(data.persist.ghost.css);
-  let editorStyles = styles();
+    data.patchedQuickCSS = injectCSS(data.persist.ghost.css);
+    let editorStyles = styles();
 
-  return {
-    onUnload() {
-      data.patchedQuickCSS();
-      editorStyles();
-    },
-    settings: createElement(Settings),
-  };
+    return {
+        onUnload() {
+            data.patchedQuickCSS();
+            editorStyles();
+        },
+        settings: createElement(Settings),
+    };
 };
