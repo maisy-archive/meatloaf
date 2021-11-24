@@ -1,19 +1,11 @@
-import { React } from "@cumcord/modules/common";
-import { Settings } from "./components/Settings";
-import plugins from "@cumcord/plugins";
+import { createElement } from "@cumcord/modules/common/React";
+import { Settings } from "./Settings";
 
-export default (data) => {
+export default () => {
     return {
-        onLoad() {
-            // let rawPlugins = plugins.installed.ghost;
-            // let prettyPlugins = Object.keys(rawPlugins)
-            //     .map((key) => [key, rawPlugins[key]]);
+        onUnload() {
 
-            // for (const plugin of prettyPlugins) {
-            //     console.log(plugin[0]);
-            // }
         },
-        onUnload() {},
-        settings: React.createElement(Settings),
-    }
-}  
+        settings: createElement(Settings),
+    };
+};
