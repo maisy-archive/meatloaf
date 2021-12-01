@@ -1,5 +1,5 @@
 import { createElement } from "@cumcord/modules/common/React";
-import { Settings } from "./Settings";
+import Settings from "./Settings";
 
 export default () => {
     return {

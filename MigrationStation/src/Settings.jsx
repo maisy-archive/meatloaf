@@ -4,13 +4,13 @@ import downloadFile from "./downloadFile";
 
 const Button = findByProps("Sizes", "Colors", "Looks", "DropdownSizes");
 
-export function Settings(props) {
+export default function Settings(props) {
     return (
         <>
             <Button
                 color={Button.Colors.BRAND}
                 size={Button.Sizes.MEDIUM}
-                onClick={(e) => { downloadFile(JSON.stringify(createBackup()), "backup.json") }}
+                onClick={async (e) => { downloadFile(JSON.stringify(await createBackup()), "backup.json") }}
             >
                 Test backup :)
             </Button>
