@@ -1,29 +1,21 @@
 import { createElement } from "@cumcord/modules/common/React";
 import data from "@cumcord/pluginData";
-
-import logger from "./logger";
 import Settings from "./Settings";
 
-import { instead } from "@cumcord/patcher";
+import logger from "./logger";
+import setDiscatch from "./setDiscatch";
 
 export default () => {
     logger("log", "[ActivityTool]", "Initialising...");
 
     // Patch dispatch to catch errors rather than throwing them, allowing for persistent activities
-    data.discatch = instead("dispatch", window.cumcord.modules.webpack.findByProps("isDispatching"), (args, originalFunction) => {
-            try {
-                originalFunction(args);
-            } catch (error) {
-                logger("warn", "[ActivityTool] Dispatch error caught!\n", error);
-            }
-        }
-    );
+    if (data.persist.ghost.settings.persistentActivities === true) {
+        setDiscatch(true);
+    }
 
     return {
         onUnload() {
-            if(data.discatch) {
-                data.discatch();
-            }
+            setDiscatch(false);
         },
         settings: createElement(Settings),
     };

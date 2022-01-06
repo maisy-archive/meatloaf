@@ -1,18 +1,21 @@
 import { findByDisplayName } from "@cumcord/modules/webpack";
+import data from "@cumcord/pluginData";
 
 const   SwitchItem = findByDisplayName("SwitchItem"),
-        Switch = findByDisplayName("Switch");
+        FormText = findByDisplayName("FormText");
 
+// TODO: I can probably do this better
 export default function Settings(props) {
-    const [toggle, setToggle] = React.useState(false);
+    const [persistentActivityToggle, setPersistentActivityToggle] = React.useState(data.persist.ghost.settings.persistentActivities || false);
 
     return (
         <>
             <SwitchItem
-                onChange={(e) => { setToggle(!toggle) }}
-                value={toggle}
+                onChange={(e) => { setPersistentActivityToggle(e); data.persist.store.settings.persistentActivities = e;   }}
+                value={persistentActivityToggle}
             >
-                Test :)
+                Persistent Activities
+                <FormText>When enabled, patch Dispatch to make activities persist when the user leaves the VC, including when removed by a moderator.</FormText>
             </SwitchItem>
         </>
     );
