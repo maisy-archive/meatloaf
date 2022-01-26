@@ -22,4 +22,3 @@ export default async function createBackup() {
 
     return backupObject;
 }
-3
