@@ -1,0 +1,7 @@
+{
+  "name": "Meddle",
+  "description": "A toolkit for messing with Discord internals.",
+  "author": "Beef",
+  "file": "src/index.js",
+  "license": "BSD-3-Clause"
+}
