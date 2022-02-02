@@ -1,12 +1,26 @@
-.beef-ms-settings-card {
-    padding: 20px;
-    cursor: default;
+.beef-ms-settings-card-container {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 0.5rem;
 
-    h1 {
-        margin-bottom: 0.25rem;
-    }
+    .beef-ms-settings-card {
+        width: 100%;
+        padding: 20px;
+        margin-left: 0.5rem;
+    
+        h1 {
+            margin-bottom: 0.25rem;
+        }
 
-    .beef-ms-settings-card-button {
-        left: 90%;
+        .beef-ms-settings-card-description {
+            margin-bottom: 2rem;
+        }
+    
+        .beef-ms-settings-card-button {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            margin: 0.5rem;
+        }
     }
 }
