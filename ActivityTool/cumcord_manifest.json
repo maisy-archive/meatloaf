@@ -1,7 +1,0 @@
-{
-  "name": "ActivityTool",
-  "description": "A tool to make messing with Discord's broken activities easier.",
-  "author": "Beef",
-  "file": "src/index.js",
-  "license": "BSD-3-Clause"
-}
