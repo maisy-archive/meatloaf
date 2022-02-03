@@ -1,5 +1,6 @@
 import createBackup from "./createBackup";
 import downloadFile from "./downloadFile";
+import uploadFile from "./uploadFile";
 import SettingsCard from "./components/SettingsCard";
 
 export default function Settings(props) {
@@ -18,7 +19,7 @@ export default function Settings(props) {
                     description="Restores from a backup of your current installation." 
                     buttonText="Restore"
                     buttonSize="MEDIUM"
-                    buttonFunc={async (e) => { downloadFile(JSON.stringify(await createBackup()), "backup.json") }}
+                    buttonFunc={async (e) => { console.log(uploadFile()) }}
                 />
             </div>
         </>
