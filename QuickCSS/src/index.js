@@ -6,6 +6,9 @@ import Settings from "./Settings";
 import { createElement } from "@cumcord/modules/common/React";
 
 export default () => {
+	if (data.persist.ghost.css === undefined) {
+		data.persist.store.css = ""
+	}
     data.patchedQuickCSS = injectCSS(data.persist.ghost.css);
     let editorStyles = styles();
 

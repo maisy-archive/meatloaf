@@ -1,29 +1,64 @@
 import { persist, patchedQuickCSS } from "@cumcord/pluginData";
 import { useNest } from "@cumcord/utils";
+import { useRef, useEffect } from "@cumcord/modules/common/React"
 
-// code editor imports
-import Editor from "react-simple-code-editor";
-import { highlight, languages } from "prismjs/components/prism-core";
-import "prismjs/components/prism-css";
+import { EditorState, setup } from './setup.js';
+import { EditorView, keymap } from '@codemirror/view';
+import { defaultKeymap, indentWithTab } from '@codemirror/commands';
+import { css } from '@codemirror/lang-css'
+import { oneDark } from '@codemirror/theme-one-dark'
 
 export default () => {
     useNest(persist);
+
+	const editor = useRef();
+	
+	useEffect(()=>{
+		const startState = EditorState.create({
+			doc: persist.ghost.css,
+			extensions: [
+				EditorView.updateListener.of((update) => {
+					if (update.docChanged) {
+						persist.store.css = update.state.doc.toString()
+						patchedQuickCSS(persist.ghost.css)
+					}
+				}),
+				setup, 
+				keymap.of([defaultKeymap, indentWithTab]),
+				oneDark,
+				EditorView.theme({
+					".cm-content, .cm-gutter": {minHeight: "20rem"},
+					'.cm-tooltip-autocomplete': {
+						
+					},
+					'.cm-tooltip-autocomplete > ul > li': {
+						width: '100%',
+						fontSize: '14px',
+						minHeight: '28px',
+						display: 'flex',
+						alignItems: 'center',
+						padding: '0 !important',
+					},
+					'.cm-tooltip-autocomplete > ul': {
+						minWidth: '180px',
+						width: '324px',
+						height: '100%',
+						maxHeight: '40vh !important',
+						padding: '6px 0 !important',
+						fontFamily: 'DejaVuSansMono, Menlo-Regular, Inconsolata !important',
+					},
+				}),
+				css()
+			],
+		})
+		const view = new EditorView({ state: startState, parent: editor.current });
+		return () => {
+      		view.destroy();
+    	};
+	}, [])
+
     return (
-        <>
-            <Editor
-                className="beef-quickcss-editor"
-                value={persist.ghost.css ?? ""}
-                onValueChange={(val) => {
-                    persist.store.css = val;
-                    patchedQuickCSS(persist.ghost.css);
-                }}
-                highlight={(code) => highlight(code, languages.css)}
-                padding={10}
-            />
-            <link
-                href={document.querySelector("html").classList.contains("theme-dark") ? "https://cdn.jsdelivr.net/gh/PrismJS/prism-themes@master/themes/prism-one-dark.css" : "https://cdn.jsdelivr.net/gh/PrismJS/prism-themes@master/themes/prism-one-light.css" }
-                rel="stylesheet"
-            />
-        </>
-    );
+		<div ref={editor}></div>
+	);
+
 };
