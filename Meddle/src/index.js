@@ -1,19 +1,15 @@
-import { createElement } from "@cumcord/modules/common/React";
-import Settings from "./Settings";
-
-import logger from "./logger";
+import registerSettings from "./patches/registerSettings";
+import styles from "./styles.scss";
 
 export default () => {
-    logger("log", "[Meddle]", "Initialising...");
-
     const patches = [
-        
+        styles(),
+        registerSettings(),
     ];
 
     return {
         onUnload() {
             _.forEachRight(patches, (p) => p());
-        },
-        settings: createElement(Settings),
+        }
     };
 };
