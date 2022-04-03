@@ -1,0 +1,7 @@
+{
+  "name": "Superpowers",
+  "description": "Contains multiple api-abuse tweaks (forbidden-fruit equivalent)",
+  "author": "Beef & Phorcys",
+  "file": "src/index.js",
+  "license": "BSD-3-Clause"
+}
