@@ -25,7 +25,7 @@ export default () => {
         onUnload: () => {
             persist.off(nests.Events.SET, handleNestsUpdate);
             for(let module of Object.keys(modules)) {
-                toggleModule(module, false);
+                if(persist.ghost[module]) toggleModule(module, false);
             }
         },
 
