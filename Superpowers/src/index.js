@@ -6,14 +6,8 @@ import { persist } from "@cumcord/pluginData";
 
 import modules from "./lib/modules";
 
-function handleNestsUpdate(_, data) {
-    console.log(data.path[0], data.value);
-    if(modules[data.path[0]]) return modules[data.path[0]](data.value);
-}
-
-function toggleModule(name, value) {
-    return handleNestsUpdate("SET", { path: [name], value });
-}
+const handleNestsUpdate = (_, data) => modules[data.path[0]] ? modules[data.path[0]](data.value) : void 0;
+const toggleModule = (name, value) => handleNestsUpdate("SET", { path: [name], value });
 
 export default () => {
     persist.on(nests.Events.SET, handleNestsUpdate);
