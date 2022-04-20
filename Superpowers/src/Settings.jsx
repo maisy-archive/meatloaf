@@ -13,8 +13,8 @@ export default () => {
             <style>{`
                 .cumcord-settings-modal {
                     min-width: 200px;
-                    min-height: 180px;
-                } 
+                    min-height: 210px;
+                }
             `}</style>
 
             <Nestbox value="screenshareCrack">
@@ -29,9 +29,15 @@ export default () => {
 
             <div style={{marginTop: 10}}></div>
 
+            <Nestbox value="spotifyNoAutopause">
+                <Text>Disable Spotify autopause (30 second limit)</Text>
+            </Nestbox>
+
+            <div style={{marginTop: 10}}></div>
+
             <Nestbox value="infiniteAccounts">
                 <Text>Infinite account switcher accounts</Text>
-            </Nestbox>        
+            </Nestbox>
         </>
     );
 };
