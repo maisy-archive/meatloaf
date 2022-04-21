@@ -1,7 +1,0 @@
-{
-  "name": "ConceptArts",
-  "description": "A plugin in which I mess around making false concept arts.",
-  "author": "Beef",
-  "file": "src/index.js",
-  "license": "BSD-3-Clause"
-}
