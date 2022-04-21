@@ -1,12 +1,11 @@
 .beef-ms-settings-card-container {
     display: flex;
     flex-direction: row;
-    margin-bottom: 0.5rem;
+    margin-bottom: 1rem;
 
     .beef-ms-settings-card {
         width: 100%;
         padding: 20px;
-        margin-left: 0.5rem;
     
         h1 {
             margin-bottom: 0.25rem;
@@ -20,7 +19,11 @@
             position: absolute;
             bottom: 0;
             right: 0;
-            margin: 0.5rem;
+            margin: 1rem;
         }
+    }
+
+    .beef-ms-settings-card:first-child {
+        margin-right: 0.5rem;
     }
 }

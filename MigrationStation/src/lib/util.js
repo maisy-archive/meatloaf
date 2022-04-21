@@ -1,7 +1,3 @@
-import { findByProps } from "@cumcord/modules/webpack";
-
-export const { showToast } = findByProps("showToast");
-
 // thanks yellowsink lol
 export function saveFile(data, fileName) {
     let domNode = document.createElement("a");

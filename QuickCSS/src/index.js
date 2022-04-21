@@ -1,19 +1,14 @@
 import { injectCSS } from "@cumcord/patcher";
-import data from "@cumcord/pluginData";
+import { persist } from "@cumcord/pluginData";
 import styles from "./styles.css";
-import Settings from "./Settings";
 
-import { createElement } from "@cumcord/modules/common/React";
+let editorStyles = styles();
 
-export default () => {
-    data.patchedQuickCSS = injectCSS(data.persist.ghost.css);
-    let editorStyles = styles();
+export const patchedQuickCSS = injectCSS(persist.ghost.css);
 
-    return {
-        onUnload() {
-            data.patchedQuickCSS();
-            editorStyles();
-        },
-        settings: createElement(Settings),
-    };
-};
+export function onUnload() {
+    patchedQuickCSS();
+    editorStyles();
+}
+
+export { default as settings } from "./Settings";

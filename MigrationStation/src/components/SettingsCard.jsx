@@ -1,10 +1,6 @@
-import { findByProps, findByDisplayName } from "@cumcord/modules/webpack"
-const Button    = findByProps("Sizes", "Colors", "Looks", "DropdownSizes"),
-      Card      = findByDisplayName("Card"),
-      FormText  = findByDisplayName("FormText"),
-      FormTitle = findByDisplayName("FormTitle");
+import { Card, FormText, FormTitle } from "../../WPMODULES"
 
-export default function SettingsCard({ title, description, buttonText, buttonColor, buttonSize, buttonLook, buttonFunc }) {
+export default function SettingsCard({ children, title, description }) {
     return (
         <>
             <Card
@@ -13,15 +9,7 @@ export default function SettingsCard({ title, description, buttonText, buttonCol
             >
                 <FormTitle tag={FormTitle.Tags.H1}>{title}</FormTitle>
                 <FormText className="beef-ms-settings-card-description" type={FormText.Types.DESCRIPTION}>{description}</FormText>
-                <Button
-                    color={Button.Colors[buttonColor] || Button.Colors.BRAND}
-                    size={Button.Sizes[buttonSize] || Button.Sizes.SMALL}
-                    look={Button.Looks[buttonLook] || Button.Looks.FILLED}
-                    className="beef-ms-settings-card-button"
-                    onClick={buttonFunc}
-                >
-                    {buttonText}
-                </Button>
+                {children}
             </Card>
         </>
     )

@@ -1,5 +1,7 @@
-import { persist, patchedQuickCSS } from "@cumcord/pluginData";
+import { persist } from "@cumcord/pluginData";
 import { useNest } from "@cumcord/utils";
+
+import { patchedQuickCSS } from ".";
 
 // code editor imports
 import Editor from "react-simple-code-editor";
@@ -21,7 +23,13 @@ export default () => {
                 padding={10}
             />
             <link
-                href={document.querySelector("html").classList.contains("theme-dark") ? "https://cdn.jsdelivr.net/gh/PrismJS/prism-themes@master/themes/prism-one-dark.css" : "https://cdn.jsdelivr.net/gh/PrismJS/prism-themes@master/themes/prism-one-light.css" }
+                href={
+                    document
+                        .querySelector("html")
+                        .classList.contains("theme-dark")
+                        ? "https://cdn.jsdelivr.net/gh/PrismJS/prism-themes@master/themes/prism-one-dark.css"
+                        : "https://cdn.jsdelivr.net/gh/PrismJS/prism-themes@master/themes/prism-one-light.css"
+                }
                 rel="stylesheet"
             />
         </>
