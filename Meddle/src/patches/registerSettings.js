@@ -1,18 +1,18 @@
 // sink my saviour https://github.com/yellowsink/cc-plugins/blob/master/cumstain/patches/settingsEntry.js
 
-import { findByDisplayName } from "@cumcord/modules/webpack";
 import { after, findAndPatch } from "@cumcord/patcher";
-import Settings from "../components/Settings";
+import Settings from "../Settings";
 
-export default () =>
-    findAndPatch(
-        () => findByDisplayName("SettingsView"),
+import { SettingsView } from "../../WPMODULES";
+
+export default () => {
+    return findAndPatch(
+        () => SettingsView,
         (SettingsView) =>
             after("getPredicateSections", SettingsView.prototype, (_, ret) => {
                 if (ret[1]?.section != "My Account") return;
 
-                let index =
-                    ret.findIndex((e) => e.section == "changelog") - 1;
+                let index = ret.findIndex((e) => e.section == "changelog") - 1;
 
                 const meddleSettings = [
                     {
@@ -20,17 +20,18 @@ export default () =>
                     },
                     {
                         section: "HEADER",
-                        label: "Meddle"
+                        label: "Meddle",
                     },
                     {
                         section: "beef_meddle_SETTINGS",
                         label: "Settings",
                         element: Settings,
-                    }
-                ]
+                    },
+                ];
 
                 ret.splice(index, 0, ...meddleSettings);
 
                 return ret;
             })
     );
+};

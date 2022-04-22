@@ -1,15 +1,17 @@
 import registerSettings from "./patches/registerSettings";
 import styles from "./styles.scss";
 
-export default () => {
-    const patches = [
-        styles(),
-        registerSettings(),
-    ];
+import { persist } from "@cumcord/pluginData";
+import dispatchLogger from "./patches/dispatchLogger";
 
-    return {
-        onUnload() {
-            _.forEachRight(patches, (p) => p());
-        }
-    };
-};
+persist.ghost.logDispatch ??= true;
+
+const patches = [
+    registerSettings(),
+    dispatchLogger(),
+    styles(),
+];
+
+export function onUnload() {
+    _.forEachRight(patches, (p) => p());
+}
