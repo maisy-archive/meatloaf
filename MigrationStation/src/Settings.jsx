@@ -1,12 +1,11 @@
-import { copyText, saveFile, openFile } from "./lib/util";
-import { showToast } from "../WPMODULES";
+import { saveFile, openFile } from "./lib/util";
 import { getPlugins, loadPlugins, makeSnippet } from "./lib/plugins";
 
 import SettingsCard from "./components/SettingsCard";
-
-import logger from "@cumcord/utils";
 import SettingsButton from "./components/SettingsButton";
-import { SingleSelect } from "../WPMODULES";
+
+import { logger, copyText } from "@cumcord/utils";
+import { showToast, SingleSelect } from "./WPMODULES";
 
 export default function Settings() {
     return (

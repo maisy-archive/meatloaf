@@ -1,4 +1,4 @@
-import { showToast as utilShowToast } from "../../WPMODULES";
+import { showToast as utilShowToast } from "../WPMODULES";
 
 import idb from "@cumcord/modules/internal/idbKeyval";
 import installedPlugins from "@cumcord/plugins/installed";

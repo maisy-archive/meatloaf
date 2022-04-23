@@ -1,4 +1,4 @@
-import { Card, FormText, FormTitle } from "../../WPMODULES"
+import { Card, FormText, FormTitle } from "../WPMODULES";
 
 export default function SettingsCard({ children, title, description }) {
     return (

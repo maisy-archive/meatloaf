@@ -1,4 +1,4 @@
-import { Button } from "../../WPMODULES";
+import { Button } from "../WPMODULES";
 
 export default function SettingsButton({ text, color, size, look, func }) {
     return (

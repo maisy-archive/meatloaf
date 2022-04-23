@@ -20,11 +20,3 @@ export async function openFile() {
         domNode.click();
     });
 }
-
-export async function copyText(text) {
-    if(DiscordNative) {
-        DiscordNative.clipboard.copy(text);
-    } else {
-        await navigator.clipboard.writeText(text);
-    }
-}
