@@ -1,7 +1,7 @@
 import { after } from "@cumcord/patcher";
 import { persist } from "@cumcord/pluginData";
 
-import { FluxDispatcher } from "../../WPMODULES";
+import { FluxDispatcher } from "../WPMODULES";
 
 export const dispatchLogs = [];
 export const ignoreList = [];

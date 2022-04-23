@@ -3,7 +3,7 @@
 import { after, findAndPatch } from "@cumcord/patcher";
 import Settings from "../Settings";
 
-import { SettingsView } from "../../WPMODULES";
+import { SettingsView } from "../WPMODULES";
 
 export default () => {
     return findAndPatch(

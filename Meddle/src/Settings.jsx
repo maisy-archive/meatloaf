@@ -1,4 +1,4 @@
-import { FormTitle, FormText, FormDivider, Button, Switch } from "../WPMODULES";
+import { FormTitle, FormText, FormDivider, Button, Switch } from "./WPMODULES";
 
 import { persist } from "@cumcord/pluginData";
 import { ErrorBoundary } from "@cumcord/ui/components";
