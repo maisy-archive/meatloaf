@@ -1,10 +1,9 @@
-import { findByDisplayName } from "@cumcord/modules/webpack";
-
 import { persist } from "@cumcord/pluginData";
 import { useNest } from "@cumcord/utils";
 
 import Nestbox from "./components/Nestbox";
-const Text = findByDisplayName("Text");
+
+import { Text } from "./WPMODULES";
 
 export default () => {
     useNest(persist);
@@ -12,8 +11,9 @@ export default () => {
         <>
             <style>{`
                 .cumcord-settings-modal {
-                    min-width: 200px;
-                    min-height: 210px;
+                    min-width: auto;
+                    min-height: auto;
+                    padding-bottom: 1rem;
                 }
             `}</style>
 

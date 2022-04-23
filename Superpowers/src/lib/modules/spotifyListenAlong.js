@@ -1,11 +1,11 @@
 import { findByProps } from "@cumcord/modules/webpack";
 
-const { getAccounts } = findByProps("getAccounts");
+import { getAccounts, FluxDispatcher } from "../../WPMODULES";
 
 const getSpotifyAccounts = () => getAccounts().filter(acc => acc.type === "spotify");
 
 function updateProfile(accountId, isPremium) {
-    return findByProps("dispatch", "_lastID").dispatch({
+    return FluxDispatcher.dispatch({
         type: "SPOTIFY_PROFILE_UPDATE",
         accountId,
         isPremium

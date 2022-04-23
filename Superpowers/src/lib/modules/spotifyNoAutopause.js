@@ -1,7 +1,6 @@
-import { findByProps } from "@cumcord/modules/webpack";
 import { instead } from "@cumcord/patcher";
 
-const spotifyPlayer = findByProps("SpotifyAPI");
+import { spotifyPlayer } from "../../WPMODULES";
 
 let patch;
 

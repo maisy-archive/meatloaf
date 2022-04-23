@@ -1,6 +1,4 @@
-import { findByProps } from "@cumcord/modules/webpack";
-
-const stream = findByProps("ApplicationStreamFPSButtons");
+import { stream } from "../../WPMODULES";
 const { ApplicationStreamSettingRequirements } = stream; // original
 
 export default function screenshareCrack(enabled) {
