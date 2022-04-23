@@ -1,10 +1,16 @@
 import registerSettings from "./patches/registerSettings";
-import styles from "./styles.scss";
-
-import { persist } from "@cumcord/pluginData";
 import dispatchLogger from "./patches/dispatchLogger";
 
-persist.ghost.logDispatch ??= true;
+import styles from "./styles.scss";
+
+import { setDefaults } from "cumcord-tools";
+
+setDefaults({
+    dispatchLogEnabled: false,
+    dispatchIgnoreList: "",
+    dispatchWhiteList: "",
+    dispatchWhiteListMode: false,
+});
 
 const patches = [
     registerSettings(),

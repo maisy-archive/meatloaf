@@ -5,6 +5,8 @@ import Settings from "../Settings";
 
 import { SettingsView } from "../WPMODULES";
 
+import { dependPersist } from "cumcord-tools";
+
 export default () => {
     return findAndPatch(
         () => SettingsView,
@@ -25,7 +27,7 @@ export default () => {
                     {
                         section: "beef_meddle_SETTINGS",
                         label: "Settings",
-                        element: Settings,
+                        element: dependPersist(Settings),
                     },
                 ];
 

@@ -3,12 +3,10 @@ import { persist } from "@cumcord/pluginData";
 
 import { FluxDispatcher } from "../WPMODULES";
 
-export const dispatchLogs = [];
-export const ignoreList = [];
-
 export default () => {
     return after("dispatch", FluxDispatcher, (args) => {
-        if (!persist.ghost.logDispatch || ignoreList?.includes(args[0].type)) return;
-        dispatchLogs.push(args[0]);
+        if (!persist.ghost.dispatchLogEnabled || persist.ghost.dispatchWhiteListMode && !persist.ghost.dispatchWhiteList.split(",").includes(args[0].type) || persist.ghost.dispatchIgnoreList.split(",").includes(args[0].type)) return;
+
+        console.log(args[0]);
     });
 };
