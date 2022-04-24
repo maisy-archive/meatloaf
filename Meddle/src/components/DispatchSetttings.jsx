@@ -10,7 +10,7 @@ export default function DispatchSettings(props) {
             <SText
                 k="dispatchIgnoreList"
             >
-                FluxDispatcher calls to hide when not in whitelist mode (comma separated)                
+                FluxDispatcher calls to hide when not in whitelist mode (comma separated)
             </SText>
 
             <SText
