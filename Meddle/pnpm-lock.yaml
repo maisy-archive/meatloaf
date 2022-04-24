@@ -1,0 +1,13 @@
+lockfileVersion: 5.3
+
+specifiers:
+  cumcord-tools: ^8.0.2
+
+dependencies:
+  cumcord-tools: 8.0.2
+
+packages:
+
+  /cumcord-tools/8.0.2:
+    resolution: {integrity: sha512-EqPpo1lEbZeA5sY+FGoC9/Yb4uTSlYGmVWKNvnQJr09mH+AUW+PzTD5+IOBa+mbqtebNYnfrLBmNzfym2U3KPA==}
+    dev: false
