@@ -1,7 +1,5 @@
 .beef-meddle-settings {
     .beef-meddle-settings-title {
-        margin-bottom: 1rem;
-
         h1 {
             margin-bottom: 0.2rem;
         }
@@ -13,6 +11,12 @@
         .beef-meddle-settings-title-subtext {
             font-size: x-small;
         }
+    }
+    
+    .beef-meddle-settings-section {
+        padding: 1rem;
+        border-radius: 0.5rem;
+        background-color: var(--background-secondary);
     }
 
     .beef-meddle-settings-divider {
