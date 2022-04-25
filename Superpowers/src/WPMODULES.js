@@ -8,6 +8,7 @@ export const [
     { getAccounts },
     FluxDispatcher,
     spotifyPlayer,
+    { getCurrentUser }
 ] = batchFind(({ findByProps, findByDisplayName }) => {
     findByDisplayName("Checkbox");
     findByDisplayName("Text");
@@ -16,4 +17,5 @@ export const [
     findByProps("getAccounts");
     findByProps("dirtyDispatch");
     findByProps("SpotifyAPI");
+    findByProps("getCurrentUser");
 });

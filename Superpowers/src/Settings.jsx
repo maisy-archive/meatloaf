@@ -38,6 +38,12 @@ export default () => {
             <Nestbox value="infiniteAccounts">
                 <Text>Infinite account switcher accounts</Text>
             </Nestbox>
+
+            <div style={{marginTop: 10}}></div>
+
+            <Nestbox value="nsfwBypass">
+                <Text>Bypass nsfw gate</Text>
+            </Nestbox>
         </>
     );
 };
