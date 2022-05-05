@@ -11,7 +11,7 @@ export const [
     { getCurrentUser }
 ] = batchFind(({ findByProps, findByDisplayName }) => {
     findByDisplayName("Checkbox");
-    findByDisplayName("Text");
+    findByDisplayName("LegacyText");
     findByProps("MAX_ACCOUNTS");
     findByProps("ApplicationStreamFPSButtons");
     findByProps("getAccounts");
