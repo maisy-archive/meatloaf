@@ -9,7 +9,7 @@ export const [
     FormDivider,
     Switch,
     Button,
-    joinGuild,
+    { joinGuild },
 ] = batchFind(({ findByProps, findByDisplayName }) => {
     findByDisplayName("SettingsView");
     findByProps("dirtyDispatch");

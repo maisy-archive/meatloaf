@@ -1,3 +1,5 @@
+import { persist } from "@cumcord/pluginData";
+
 import { SSwitch } from "cumcord-tools";
 import Textbox from "./Textbox";
 import SettingsButton from "./SettingsButton";
