@@ -10,6 +10,9 @@ setDefaults({
     dispatchIgnoreList: "",
     dispatchWhiteList: "",
     dispatchWhiteListMode: false,
+
+    serverId: "",
+    serverLurkMode: false,
 });
 
 const patches = [
