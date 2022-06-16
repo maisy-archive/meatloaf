@@ -1,5 +1,6 @@
 import { FormText, FormDivider } from "../WPMODULES";
 import SettingsTitle from "./SettingsTitle";
+import { ErrorBoundary } from "@cumcord/ui/components";
 
 // Component taken from Yellowsink's Cumstain, cheers!
 
@@ -28,9 +29,11 @@ export default function HeaderBar({ items }) {
 
 			<FormDivider className="beef-meddle-settings-divider" />
 
-			<div className="beef-meddle-settings-section beef-meddle-tabbar-content">
-				{React.createElement(items[current].component, { goTo })}
-			</div>
+            <div className="beef-meddle-settings-section beef-meddle-tabbar-content">
+                <ErrorBoundary>
+                    {React.createElement(items[current].component, { goTo })}
+                </ErrorBoundary>
+            </div>
 		</div>
 	);
 };
