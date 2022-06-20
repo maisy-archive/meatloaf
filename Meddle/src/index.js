@@ -4,6 +4,7 @@ import dispatchLogger from "./patches/dispatchLogger";
 import styles from "./styles.scss";
 
 import { setDefaults } from "cumcord-tools";
+import exposeObject from "./patches/exposeObject";
 
 setDefaults({
     dispatchLogEnabled: false,
@@ -13,7 +14,11 @@ setDefaults({
 
     serverId: "",
     serverLurkMode: false,
+
+    generalExposeObject: true,
 });
+
+exposeObject();
 
 const patches = [
     registerSettings(),
@@ -22,5 +27,6 @@ const patches = [
 ];
 
 export function onUnload() {
+    exposeObject();
     _.forEachRight(patches, (p) => p());
 }
