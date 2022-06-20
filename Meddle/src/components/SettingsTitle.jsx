@@ -7,7 +7,7 @@ export default function SettingsTitle(props) {
             <FormText>
                 A tool for those who like to mess with the Maze.
             </FormText>
-            <FormText className="beef-meddle-settings-title-subtext">
+            <FormText className="beef-meddle-subtext">
                 Currently very WIP
             </FormText>
         </div>

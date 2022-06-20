@@ -18,15 +18,14 @@ setDefaults({
     generalExposeObject: true,
 });
 
-exposeObject();
 
 const patches = [
+    exposeObject(),
     registerSettings(),
     dispatchLogger(),
     styles(),
 ];
 
 export function onUnload() {
-    exposeObject();
     _.forEachRight(patches, (p) => p());
 }

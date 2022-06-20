@@ -4,14 +4,6 @@
         h1 {
             margin-bottom: 0.2rem;
         }
-
-        :nth-child(3) {
-            color: var(--text-muted);
-        }
-
-        .beef-meddle-settings-title-subtext {
-            font-size: x-small;
-        }
     }
 
     .beef-meddle-settings-section {
@@ -31,6 +23,11 @@
 }
 
 // Generics
+.beef-meddle-subtext {
+    font-size: x-small;
+    color: var(--text-muted);
+}
+
 .beef-meddle-row {
     display: flex;
     gap: 1rem;
@@ -49,28 +46,31 @@
     }
 }
 
+.beef-meddle-switch-wrapper {
+	display: flex;
+	align-items: center;
+	gap: 0.5rem;
+}
+
 .beef-meddle-tabbar {
     padding: 0.25rem;
-    display: grid;
-    grid-auto-flow: column;
-    grid-auto-columns: 7rem;
+    display: flex;
+    flex-direction: row;
+    gap: 0.5rem;
 
     .beef-meddle-button * {
         cursor: pointer;
     }
 
     * {
-        margin-right: 1rem;
         padding: 0.2rem;
         border-radius: 0.3rem;
-        min-width: 5rem;
+        width: fit-content;
         text-align: center;
-
         background: none;
     }
 
     .beef-meddle-selected {
-        width: fit-content;
         .theme-dark & {
             background: #fff4;
         }
@@ -78,9 +78,5 @@
         .theme-light & {
             background: #0003;
         }
-    }
-
-    :last-child {
-        margin-right: 0;
     }
 }
