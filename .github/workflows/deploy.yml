@@ -11,12 +11,15 @@ jobs:
         steps:
             - uses: actions/checkout@v2
 
-            - name: Prepare environment
+            - name: Setup Node
               uses: actions/setup-node@v2
               with:
                   node-version: "16"
 
-            - run: npm install --global sperm
+            - name: Deps
+              run: |
+                  npm install --global sperm pnpm
+                  pnpm i
 
               # Magic happens here:
               # - finds every folder in repo (which is why dist dir is hidden)
@@ -27,11 +30,11 @@ jobs:
             - name: Build plugin(s)
               run: |
                   mkdir .dist
-                  for plugin in */
-                  do
+                  cd plugins
+                  for plugin in */; do
                     cd "$plugin"
-                    npm i 2> /dev/null || true
-                    sperm build --outdir "../.dist/$plugin"
+
+                    sperm build --outdir "../../.dist/$plugin"
                     cd ..
                   done
 
@@ -54,8 +57,3 @@ jobs:
                   publish_dir: ./.dist
                   # Makes it so the md files in the previous step get processed by GitHub Pages
                   enable_jekyll: true
-                  # https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site
-                  # This creates the CNAME file required to host github pages on a custom domain
-                  # Remove this to use default [username].github.io domain
-                  # Reminder: using a free domain service like freenom *can* result in your users getting hacked
-                  # cname: cum.beefers.ml

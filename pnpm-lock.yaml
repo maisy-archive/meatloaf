@@ -1,0 +1,45 @@
+lockfileVersion: 5.4
+
+importers:
+
+  .:
+    specifiers:
+      cumcord-tools: ^8.0.2
+    devDependencies:
+      cumcord-tools: 8.0.2
+
+  plugins/Meddle:
+    specifiers:
+      cumcord-tools: 8.0.2
+    dependencies:
+      cumcord-tools: 8.0.2
+
+  plugins/QuickCSS:
+    specifiers:
+      prismjs: ^1.25.0
+      react-simple-code-editor: ^0.11.0
+    dependencies:
+      prismjs: 1.28.0
+      react-simple-code-editor: 0.11.2
+
+packages:
+
+  /cumcord-tools/8.0.2:
+    resolution: {integrity: sha512-EqPpo1lEbZeA5sY+FGoC9/Yb4uTSlYGmVWKNvnQJr09mH+AUW+PzTD5+IOBa+mbqtebNYnfrLBmNzfym2U3KPA==}
+
+  /prismjs/1.28.0:
+    resolution: {integrity: sha512-8aaXdYvl1F7iC7Xm1spqSaY/OJBpYW3v+KJ+F17iYxvdc8sfjW194COK5wVhMZX45tGteiBQgdvD/nhxcRwylw==}
+    engines: {node: '>=6'}
+    dev: false
+
+  /react-simple-code-editor/0.11.2:
+    resolution: {integrity: sha512-vLMEDj+qLrZ88zK/8bhRdqM2Mp0cQJCUbHPc/QIfxlIYHzAclaAzPX0TQ4ZI5LTYSP3hsYYOT3EciV2dCG4o0Q==}
+    peerDependencies:
+      react: '*'
+      react-dom: '*'
+    peerDependenciesMeta:
+      react:
+        optional: true
+      react-dom:
+        optional: true
+    dev: false

@@ -1,0 +1,15 @@
+{
+    "private": true,
+    "devDependencies": {
+        "cumcord-tools": "^8.0.2"
+    },
+    "packageManager": "pnpm@7.0.0",
+    "pnpm": {
+        "peerDependencyRules": {
+            "ignoreMissing": [
+                "react",
+                "react-dom"
+            ]
+        }
+    }
+}
