@@ -1,20 +1,24 @@
+import Header from "../components/Header";
+
 export default function registerGoosemodObj() {
     window.goosemod = {
         patcher: {
-            ...cumcord.patcher,
+            patch: (parent, func, handler, before = false, instead = false) => {
+                const patchType = before ? "before" : instead ? "instead" : "after";
+
+                return cumcord.patcher[patchType](func, parent, handler);
+            },
             internalMessage: () => { console.log("Plugin called internalMessage, stub for now") }
         },
         webpackModules: {
-            all: cumcord.modules.webpack.modules,
-            find: cumcord.modules.webpack.find,
-            findAll: cumcord.modules.webpack.findAll,
-            findByProps: cumcord.modules.webpack.findByProps,
-            findByProps: cumcord.modules.webpack.findByPropsAll,
-            findByPrototypes: cumcord.modules.webpack.findByPrototypes,
-            findByDisplayName: cumcord.modules.webpack.findByDisplayName,
-            findByDisplayNameAll: cumcord.modules.webpack.findByDisplayNameAll,
+            ...cumcord.modules.webpack,
             findByModuleId: (id) => { return cumcord.modules.webpack.modules[id] },
             common: cumcord.modules.common,
+        },
+        settings: {
+            Items: {
+                header: Header
+            }
         },
         reactUtils: {
             getOwnerInstance: cumcord.utils.getOwnerInstance,
