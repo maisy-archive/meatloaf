@@ -2,12 +2,24 @@ import { batchFind } from "@cumcord/modules/webpack";
 
 export const [
     FormTitle,
-    // Margins,
-    // Tooltip,
-    // Science,
+    FormText,
+    FormDivider,
+    FormItem,
+    FormClasses,
+    FormTextClasses,
+    Markdown,
+    Button,
+    Flex,
+    Margins,
 ] = batchFind(({ findByProps, findByDisplayName }) => {
     findByDisplayName("FormTitle");
-    // findByProps("marginTop20", "marginBottom8");
-    // findByDisplayName("Tooltip");
-    // findByDisplayName("Science");
+    findByDisplayName("FormText");
+    findByDisplayName("FormDivider");
+    findByDisplayName("FormItem");
+    findByProps("dividerDefault", "titleDefault");
+    findByProps("formText", "placeholder");
+    findByDisplayName("Markdown");
+    findByProps("Sizes", "Colors", "Looks", "DropdownSizes");
+    findByDisplayName("Flex");
+    findByProps("marginTop20", "marginBottom8");
 });

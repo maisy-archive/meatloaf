@@ -1,4 +1,8 @@
+import Divider from "../components/Divider";
 import Header from "../components/Header";
+import SubText from "../components/SubText";
+import TextAndChild from "../components/TextAndChild";
+import Toggle from "../components/Toggle";
 
 export default function registerGoosemodObj() {
     window.goosemod = {
@@ -17,7 +21,11 @@ export default function registerGoosemodObj() {
         },
         settings: {
             Items: {
-                header: Header
+                header: Header,
+                subtext: SubText,
+                divider: Divider,
+                toggle: Toggle,
+                "text-and-child": TextAndChild
             }
         },
         reactUtils: {
