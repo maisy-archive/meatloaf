@@ -1,0 +1,7 @@
+{
+  "name": "Sapphire",
+  "description": "A compatibility layer for running Topaz on top of Cumcord.",
+  "author": "Beef",
+  "file": "./src/index.js",
+  "license": "BSD-3-Clause"
+}
