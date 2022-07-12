@@ -32,8 +32,10 @@
 //     );
 // }
 
-export default function TextAndChild() {
+import Stub from "./Stub";
+
+export default function TextAndChild({}) {
     return (
-        <div>STUB</div>
+        <Stub componentName={"TextAndChild"} />
     );
 }

@@ -5,6 +5,7 @@ import TextAndChild from "../components/TextAndChild";
 import Toggle from "../components/Toggle";
 
 export default function registerGoosemodObj() {
+    const uninjectors = {};
     window.goosemod = {
         patcher: {
             patch: (parent, func, handler, before = false, instead = false) => {
@@ -12,7 +13,23 @@ export default function registerGoosemodObj() {
 
                 return cumcord.patcher[patchType](func, parent, handler);
             },
-            internalMessage: () => { console.log("Plugin called internalMessage, stub for now") }
+            inject: (_id, parent, func, handler, before = false) => {
+                const patchType = before ? "before" : "after";
+
+                uninjectors[_id] = cumcord.patcher[patchType](func, parent, handler);
+            },
+            uninject: (_id) => {
+                if (!uninjectors[_id]) return false;
+
+                uninjectors[_id]();
+
+                return true;
+            },
+            internalMessage: () => { console.log("Plugin called internalMessage, stub for now") },
+            commands: {
+                add: () => { console.log("Plugin called commands.add, stub for now") },
+                remove: () => { console.log("Plugin called commands.remove, stub for now") }
+            }
         },
         webpackModules: {
             ...cumcord.modules.webpack,

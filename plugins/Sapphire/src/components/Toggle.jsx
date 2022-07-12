@@ -1,5 +1,7 @@
-export default function Toggle() {
+import Stub from "./Stub";
+
+export default function Toggle({}) {
     return (
-        <div>STUB</div>
+        <Stub componentName={"Toggle"} />
     );
 }
