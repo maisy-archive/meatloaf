@@ -4,9 +4,9 @@ importers:
 
   .:
     specifiers:
-      cumcord-tools: ^8.0.2
+      cumcord-types: ^1.3.0
     devDependencies:
-      cumcord-tools: 8.0.2
+      cumcord-types: 1.3.0
 
   plugins/Meddle:
     specifiers:
@@ -24,8 +24,106 @@ importers:
 
 packages:
 
+  /@babel/runtime/7.18.6:
+    resolution: {integrity: sha512-t9wi7/AW6XtKahAe20Yw0/mMljKq0B1r2fPdvaAdV/KPDZewFXdaaa6K7lxmZBZ8FBNpCiAT6iHPmd6QO9bKfQ==}
+    engines: {node: '>=6.9.0'}
+    dependencies:
+      regenerator-runtime: 0.13.9
+    dev: true
+
+  /@types/fbemitter/2.0.32:
+    resolution: {integrity: sha512-Hwq28bBlbmfCgLnNJvjl5ssTrbZCTSblI4vqPpqZrbbEL8vn5l2UivxhlMYfUY7a4SR8UB6RKoLjOZfljqAa6g==}
+    dev: true
+
+  /@types/flux/3.1.11:
+    resolution: {integrity: sha512-Aq4UB1ZqAKcPbhB0GpgMw2sntvOh71he9tjz53TLKrI7rw3Y3LxCW5pTYY9IV455hQapm4pmxFjpqlWOs308Yg==}
+    dependencies:
+      '@types/fbemitter': 2.0.32
+      '@types/react': 18.0.15
+    dev: true
+
+  /@types/prop-types/15.7.5:
+    resolution: {integrity: sha512-JCB8C6SnDoQf0cNycqd/35A7MjcnK+ZTqE7judS6o7utxUCg6imJg3QK2qzHKszlTjcj2cn+NwMB2i96ubpj7w==}
+    dev: true
+
+  /@types/react-dom/18.0.6:
+    resolution: {integrity: sha512-/5OFZgfIPSwy+YuIBP/FgJnQnsxhZhjjrnxudMddeblOouIodEQ75X14Rr4wGSG/bknL+Omy9iWlLo1u/9GzAA==}
+    dependencies:
+      '@types/react': 18.0.15
+    dev: true
+
+  /@types/react/17.0.2:
+    resolution: {integrity: sha512-Xt40xQsrkdvjn1EyWe1Bc0dJLcil/9x2vAuW7ya+PuQip4UYUaXyhzWmAbwRsdMgwOFHpfp7/FFZebDU6Y8VHA==}
+    dependencies:
+      '@types/prop-types': 15.7.5
+      csstype: 3.1.0
+    dev: true
+
+  /@types/react/18.0.15:
+    resolution: {integrity: sha512-iz3BtLuIYH1uWdsv6wXYdhozhqj20oD4/Hk2DNXIn1kFsmp9x8d9QB6FnPhfkbhd2PgEONt9Q1x/ebkwjfFLow==}
+    dependencies:
+      '@types/prop-types': 15.7.5
+      '@types/scheduler': 0.16.2
+      csstype: 3.1.0
+    dev: true
+
+  /@types/scheduler/0.16.2:
+    resolution: {integrity: sha512-hppQEBDmlwhFAXKJX2KnWLYu5yMfi91yazPb2l+lbJiwW+wdo1gNeRA+3RgNSO39WYX2euey41KEwnqesU2Jew==}
+    dev: true
+
+  /csstype/3.1.0:
+    resolution: {integrity: sha512-uX1KG+x9h5hIJsaKR9xHUeUraxf8IODOwq9JLNPq6BwB04a/xgpq3rcx47l5BZu5zBPlgD342tdke3Hom/nJRA==}
+    dev: true
+
   /cumcord-tools/8.0.2:
     resolution: {integrity: sha512-EqPpo1lEbZeA5sY+FGoC9/Yb4uTSlYGmVWKNvnQJr09mH+AUW+PzTD5+IOBa+mbqtebNYnfrLBmNzfym2U3KPA==}
+    dev: false
+
+  /cumcord-types/1.3.0:
+    resolution: {integrity: sha512-luyw7VzCIIZJjit8ycn4HUJP70b14qb0KF/ILZu62i0CFOdTBRR/sAB/zGMoocx00pv3+oXhT9olZVSk19tzKg==}
+    dependencies:
+      '@types/flux': 3.1.11
+      '@types/react': 18.0.15
+      '@types/react-dom': 18.0.6
+      discord-types: 1.3.26
+      highlight.js: 11.5.1
+      nests: 2.3.1
+      redux: 4.2.0
+      spitroast: 1.4.2
+      zustand: 4.0.0-rc.1
+    transitivePeerDependencies:
+      - immer
+      - react
+      - solid-js
+    dev: true
+
+  /discord-types/1.3.26:
+    resolution: {integrity: sha512-ToG51AOCH+JTQf7b+8vuYQe5Iqwz7nZ7StpECAZ/VZcI1ZhQk13pvt9KkRTfRv1xNvwJ2qib4e3+RifQlo8VPQ==}
+    dependencies:
+      '@types/react': 17.0.2
+      moment: 2.29.4
+    dev: true
+
+  /highlight.js/11.5.1:
+    resolution: {integrity: sha512-LKzHqnxr4CrD2YsNoIf/o5nJ09j4yi/GcH5BnYz9UnVpZdS4ucMgvP61TDty5xJcFGRjnH4DpujkS9bHT3hq0Q==}
+    engines: {node: '>=12.0.0'}
+    dev: true
+
+  /moment/2.29.4:
+    resolution: {integrity: sha512-5LC9SOxjSc2HF6vO2CyuTDNivEdoz2IvyJJGj6X8DJ0eFyfszE0QiEd+iXmBvUP3WHxSjFH/vIsA0EN00cgr8w==}
+    dev: true
+
+  /nests/2.3.1:
+    resolution: {integrity: sha512-mq9g10tzsaGbS/c5RUJVwiJVqo89JA/KIYPpBDQlKnyviJ7EDUaboIWsuWx0Abe49nys8MjnB6vK53KF1m6MUQ==}
+    peerDependencies:
+      react: '>=16.8'
+      solid-js: '>=1.0.0'
+    peerDependenciesMeta:
+      react:
+        optional: true
+      solid-js:
+        optional: true
+    dev: true
 
   /prismjs/1.28.0:
     resolution: {integrity: sha512-8aaXdYvl1F7iC7Xm1spqSaY/OJBpYW3v+KJ+F17iYxvdc8sfjW194COK5wVhMZX45tGteiBQgdvD/nhxcRwylw==}
@@ -43,3 +141,41 @@ packages:
       react-dom:
         optional: true
     dev: false
+
+  /redux/4.2.0:
+    resolution: {integrity: sha512-oSBmcKKIuIR4ME29/AeNUnl5L+hvBq7OaJWzaptTQJAntaPvxIJqfnjbaEiCzzaIz+XmVILfqAM3Ob0aXLPfjA==}
+    dependencies:
+      '@babel/runtime': 7.18.6
+    dev: true
+
+  /regenerator-runtime/0.13.9:
+    resolution: {integrity: sha512-p3VT+cOEgxFsRRA9X4lkI1E+k2/CtnKtU4gcxyaCUreilL/vqI6CdZ3wxVUx3UOUg+gnUOQQcRI7BmSI656MYA==}
+    dev: true
+
+  /spitroast/1.4.2:
+    resolution: {integrity: sha512-iEBsKg3EXTQj2nikYIMtOE5YSqbI5CtRxVYI+Gh+9HeQxf4u86UWF5yC5eTVAoReZSogbD2M37JYG8TYGBnFTg==}
+    dev: true
+
+  /use-sync-external-store/1.1.0:
+    resolution: {integrity: sha512-SEnieB2FPKEVne66NpXPd1Np4R1lTNKfjuy3XdIoPQKYBAFdzbzSZlSn1KJZUiihQLQC5Znot4SBz1EOTBwQAQ==}
+    peerDependencies:
+      react: ^16.8.0 || ^17.0.0 || ^18.0.0
+    peerDependenciesMeta:
+      react:
+        optional: true
+    dev: true
+
+  /zustand/4.0.0-rc.1:
+    resolution: {integrity: sha512-qgcs7zLqBdHu0PuT3GW4WCIY5SgXdsv30GQMu9Qpp1BA2aS+sNS8l4x0hWuyEhjXkN+701aGWawhKDv6oWJAcw==}
+    engines: {node: '>=12.7.0'}
+    peerDependencies:
+      immer: '>=9.0'
+      react: '>=16.8'
+    peerDependenciesMeta:
+      immer:
+        optional: true
+      react:
+        optional: true
+    dependencies:
+      use-sync-external-store: 1.1.0
+    dev: true
