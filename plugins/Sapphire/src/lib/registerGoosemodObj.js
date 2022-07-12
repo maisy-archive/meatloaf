@@ -25,16 +25,24 @@ export default function registerGoosemodObj() {
 
                 return true;
             },
-            internalMessage: () => { console.log("Plugin called internalMessage, stub for now") },
+            internalMessage: () => console.log("Plugin called internalMessage, stub for now"),
             commands: {
-                add: () => { console.log("Plugin called commands.add, stub for now") },
-                remove: () => { console.log("Plugin called commands.remove, stub for now") }
+                add: () => console.log("Plugin called commands.add, stub for now"),
+                remove: () => console.log("Plugin called commands.remove, stub for now")
             }
         },
         webpackModules: {
-            ...cumcord.modules.webpack,
-            findByModuleId: (id) => { return cumcord.modules.webpack.modules[id] },
+            all: () => Object.values(cumcord.modules.webpack.modules).map((m) => m.exports),
             common: cumcord.modules.common,
+
+            find: cumcord.modules.webpack.find,
+            findAll: cumcord.modules.webpack.findAll,
+            findByDisplayName: cumcord.modules.webpack.findByDisplayName,
+            findByDisplayNameAll: cumcord.modules.webpack.findByDisplayNameAll,
+            findByModuleId: (id) => cumcord.modules.webpack.modules[id],
+            findByProps: cumcord.modules.webpack.findByProps,
+            findByPropsAll: cumcord.modules.webpack.findByPropsAll,
+            findByPrototypes: cumcord.modules.webpack.findByPrototypes,
         },
         settings: {
             Items: {
@@ -46,8 +54,8 @@ export default function registerGoosemodObj() {
             }
         },
         reactUtils: {
+            findInReactTree: cumcord.utils.findInReactTree,
             getOwnerInstance: cumcord.utils.getOwnerInstance,
-
         },
         showToast: cumcord.ui.toasts.showToast,
         _SAPPHIRE: true
