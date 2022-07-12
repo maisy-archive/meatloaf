@@ -25,8 +25,8 @@ export default function TextAndChild({ children, text, subtext }) {
                             {subtext}
                         </Markdown>
                     </FormText>
-                    {children}
                 </div>
+                {children}
             </div>
             <Divider />
         </FormItem>
