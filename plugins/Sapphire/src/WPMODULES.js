@@ -11,6 +11,10 @@ export const [
     Button,
     Flex,
     Margins,
+    SwitchItem,
+    Tooltip,
+    Science,
+    Alert,
 ] = batchFind(({ findByProps, findByDisplayName, findByDisplayNameAll }) => {
     findByDisplayName("FormTitle");
     findByDisplayName("FormText");
@@ -22,4 +26,8 @@ export const [
     findByProps("Sizes", "Colors", "Looks", "DropdownSizes");
     findByDisplayName("Flex");
     findByProps("marginTop20", "marginBottom8");
+    findByDisplayName("SwitchItem")
+    findByDisplayName("Tooltip");
+    findByDisplayName("Science");
+    findByDisplayName("InfoFilled");
 });

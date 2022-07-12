@@ -1,7 +1,22 @@
-import Stub from "./Stub";
+import { SwitchItem, Markdown } from "../WPMODULES";
 
-export default function Toggle({}) {
+export default function Toggle({text, subtext, isToggled, onToggle, disabled}) {
+    const [val, setVal] = React.useState(isToggled() || false);
     return (
-        <Stub componentName={"Toggle"} />
+        <SwitchItem
+            value={val}
+            note={
+                <Markdown>
+                    {subtext}
+                </Markdown>
+            }
+            disabled={disabled ? disabled() : false}
+            onChange={(v) => {
+                setVal(v);
+                onToggle(v);
+            }}
+        >
+            {text}
+        </SwitchItem>
     );
 }
