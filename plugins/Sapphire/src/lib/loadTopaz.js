@@ -1,8 +1,20 @@
+import getGoosemodObj from "./getGoosemodObj";
+
 const oscillationInTheClub = eval;
+const gmObj = getGoosemodObj();
 
 export default function loadTopaz() {
-    fetch("https://goosemod.github.io/topaz/out.js")
-        .then(async (res) => oscillationInTheClub(await res.text()));
+  const fW = new Proxy(window, {
+    get(target, prop) {
+      if (prop === "goosemod") {
+        return gmObj;
+      }
 
-    return () => { if (window.topaz) { window.topaz.__reloading = true; window.topaz.purge(); delete window.topaz } };
+      return Reflect.get(target, prop);
+    },
+  });
+
+  fetch("https://goosemod.github.io/topaz/out.js").then(async (res) =>
+    oscillationInTheClub(`(window, goosemod) => ` + (await res.text()))(fW, gmObj)
+  );
 }

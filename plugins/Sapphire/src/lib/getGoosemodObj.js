@@ -4,9 +4,9 @@ import SubText from "../components/SubText";
 import TextAndChild from "../components/TextAndChild";
 import Toggle from "../components/Toggle";
 
-export default function registerGoosemodObj() {
+export default function getGoosemodObj() {
     const uninjectors = {};
-    window.goosemod = {
+    return {
         patcher: {
             patch: (parent, func, handler, before = false, instead = false) => {
                 const patchType = before ? "before" : instead ? "instead" : "after";
@@ -63,8 +63,5 @@ export default function registerGoosemodObj() {
             getReactInstance: cumcord.utils.getReactInstance,
         },
         showToast: cumcord.ui.toasts.showToast,
-        _SAPPHIRE: true
     }
-
-    return () => { if(window.goosemod._SAPPHIRE) delete window.goosemod };
 }
