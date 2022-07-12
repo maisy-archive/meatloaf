@@ -25,8 +25,10 @@ export default function registerGoosemodObj() {
 
                 return true;
             },
+            // TODO: Polyfill all the "extra" stuff that's in GM's patcher
             internalMessage: () => console.log("Plugin called internalMessage, stub for now"),
             commands: {
+                // TODO: Polyfill commands
                 add: () => console.log("Plugin called commands.add, stub for now"),
                 remove: () => console.log("Plugin called commands.remove, stub for now")
             }
@@ -55,7 +57,10 @@ export default function registerGoosemodObj() {
         },
         reactUtils: {
             findInReactTree: cumcord.utils.findInReactTree,
+            findInTree: cumcord.utils.findInTree,
+            // TODO: Polyfill getNodeInternals, no CC equivalent
             getOwnerInstance: cumcord.utils.getOwnerInstance,
+            getReactInstance: cumcord.utils.getReactInstance,
         },
         showToast: cumcord.ui.toasts.showToast,
         _SAPPHIRE: true
