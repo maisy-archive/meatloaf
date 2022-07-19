@@ -15,6 +15,11 @@ export const [
     Tooltip,
     Science,
     Alert,
+    WarningCircle,
+    { BOT_AVATARS },
+    { createBotMessage },
+    { getChannelId },
+    { receiveMessage },
 ] = batchFind(({ findByProps, findByDisplayName, findByDisplayNameAll }) => {
     findByDisplayName("FormTitle");
     findByDisplayName("FormText");
@@ -30,4 +35,9 @@ export const [
     findByDisplayName("Tooltip");
     findByDisplayName("Science");
     findByDisplayName("InfoFilled");
+    findByDisplayName("WarningCircle");
+    findByProps("BOT_AVATARS", "DEFAULT_AVATARS");
+    findByProps("createBotMessage");
+    findByProps("getChannelId", "getVoiceChannelId");
+    findByProps("receiveMessage", "sendBotMessage");
 });

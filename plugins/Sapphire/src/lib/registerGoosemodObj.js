@@ -1,11 +1,12 @@
 import Divider from "../components/Divider";
-import Header from "../components/Header";
-import SubText from "../components/SubText";
 import TextAndChild from "../components/TextAndChild";
+import TextAndButton from "../components/TextAndButton";
 import Toggle from "../components/Toggle";
+import internalMessage from "./internalMessage";
 
 export default function registerGoosemodObj() {
-    const uninjectors = {};
+    const uninjectors = new Map();
+    const registeredCommands = new Map();
     window.goosemod = {
         patcher: {
             patch: (parent, func, handler, before = false, instead = false) => {
@@ -16,27 +17,31 @@ export default function registerGoosemodObj() {
             inject: (_id, parent, func, handler, before = false) => {
                 const patchType = before ? "before" : "after";
 
-                uninjectors[_id] = cumcord.patcher[patchType](func, parent, handler);
+                uninjectors.set(_id, cumcord.patcher[patchType](func, parent, handler));
             },
             uninject: (_id) => {
-                if (!uninjectors[_id]) return false;
+                const uninjector = uninjectors.get(_id);
+                if (!uninjector) return false;
 
-                uninjectors[_id]();
-
+                uninjector();
                 return true;
             },
-            // TODO: Polyfill all the "extra" stuff that's in GM's patcher
-            internalMessage: () => console.log("Plugin called internalMessage, stub for now"),
+            // TODO: Polyfill all the "extra" stuff that's in GM's patcher, see https://github.com/GooseMod/GooseMod/tree/master/src/util/patcher
+            internalMessage: internalMessage,
             commands: {
-                // TODO: Polyfill commands
-                add: () => console.log("Plugin called commands.add, stub for now"),
-                remove: () => console.log("Plugin called commands.remove, stub for now")
+                // TODO: Arguments are broken, fix them
+                add: (name, description, execute, options = []) => registeredCommands.set(name, cumcord.commands.addCommand({
+                    name: name,
+                    description: description,
+                    args: options,
+                    handler: execute
+                })),
+                remove: (name) => registeredCommands.get(name)(),
             }
         },
         webpackModules: {
             all: () => Object.values(cumcord.modules.webpack.modules).map((m) => m.exports),
             common: cumcord.modules.common,
-
             find: cumcord.modules.webpack.find,
             findAll: cumcord.modules.webpack.findAll,
             findByDisplayName: cumcord.modules.webpack.findByDisplayName,
@@ -48,21 +53,31 @@ export default function registerGoosemodObj() {
         },
         settings: {
             Items: {
-                header: Header,
-                subtext: SubText,
                 divider: Divider,
                 toggle: Toggle,
-                "text-and-child": TextAndChild
+                "text-and-child": TextAndChild,
+                "text-and-button": TextAndButton
             }
         },
         reactUtils: {
             findInReactTree: cumcord.utils.findInReactTree,
             findInTree: cumcord.utils.findInTree,
-            // TODO: Polyfill getNodeInternals, no CC equivalent
+            getNodeInternals: (node) => node._reactInternalFiber || node._reactInternals,
             getOwnerInstance: cumcord.utils.getOwnerInstance,
             getReactInstance: cumcord.utils.getReactInstance,
         },
-        showToast: cumcord.ui.toasts.showToast,
+        showToast: (text, options) => {
+            // TODO: Actually return the toast's element if possible
+            const toastElem = document.createElement("div");
+            const closeFunc = cumcord.ui.toasts.showToast({
+                title: text, 
+                content: options?.subtext || "", 
+                onClick: () => {}, 
+                className: "", 
+                duration: options?.duration || 3000
+            });
+            return { toastElem, closeFn: closeFunc };
+        },
         _SAPPHIRE: true
     }
 

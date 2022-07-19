@@ -1,4 +1,3 @@
-// TODO: Make this work
 import { Flex, Margins, FormItem, FormClasses, FormTextClasses, FormText, Markdown } from "../WPMODULES";
 import Divider from "./Divider";
 
@@ -20,7 +19,6 @@ export default function TextAndChild({ children, text, subtext }) {
                     <FormText
                         className={FormTextClasses.description}
                     >
-                        {/* FIXME: This class is not being applied */}
                         <Markdown className="settings-note-markdown">
                             {subtext}
                         </Markdown>

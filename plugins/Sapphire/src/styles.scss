@@ -1,8 +1,17 @@
 .settings-note-markdown {
-  font-size: inherit;
-  color: inherit !important;
+    font-size: inherit;
+    color: inherit !important;
 
-  &, [class*='paragraph-'] {
-    margin: 0;
-  }
+    &,
+    [class*="paragraph-"] {
+        margin: 0;
+    }
+}
+
+.beef-sapphire-stub {
+    color: var(--info-warning-foreground);
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    padding: 0.25rem;
 }
