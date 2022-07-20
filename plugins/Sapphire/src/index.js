@@ -1,6 +1,6 @@
-import registerGoosemodObj from "./lib/registerGoosemodObj";
-import loadTopaz from "./lib/loadTopaz";
-import fixLocalStorage from "./lib/fixLocalStorage";
+import registerGoosemodObj from "./patches/registerGoosemodObj";
+import loadTopaz from "./patches/loadTopaz";
+import fixLocalStorage from "./patches/fixLocalStorage";
 import injectStyles from "./styles.scss";
 
 const patches = [

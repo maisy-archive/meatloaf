@@ -1,4 +1,4 @@
-import { createBotMessage, getChannelId, receiveMessage } from "../WPMODULES";
+import { createBotMessage, getChannelId, receiveMessage } from "../../WPMODULES";
 
 export default function internalMessage(content, author = "Sapphire") {
     const message = createBotMessage(getChannelId(), "");
