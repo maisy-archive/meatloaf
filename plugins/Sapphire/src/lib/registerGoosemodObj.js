@@ -72,14 +72,12 @@ export default function registerGoosemodObj() {
             const closeFunc = cumcord.ui.toasts.showToast({
                 title: text, 
                 content: options?.subtext || "", 
-                onClick: () => {}, 
-                className: "", 
-                duration: options?.duration || 3000
+                duration: options?.duration || 3000,
             });
             return { toastElem, closeFn: closeFunc };
         },
         _SAPPHIRE: true
     }
 
-    return () => { if(window.goosemod._SAPPHIRE) delete window.goosemod };
+    return () => { if(window.goosemod?._SAPPHIRE) delete window.goosemod };
 }
