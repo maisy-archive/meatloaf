@@ -20,6 +20,8 @@ export const [
     { createBotMessage },
     { getChannelId },
     { receiveMessage },
+    { showChangeLog, hideChangeLog },
+    { changeLog },
 ] = batchFind(({ findByProps, findByDisplayName, findByDisplayNameAll }) => {
     findByDisplayName("FormTitle");
     findByDisplayName("FormText");
@@ -40,4 +42,6 @@ export const [
     findByProps("createBotMessage");
     findByProps("getChannelId", "getVoiceChannelId");
     findByProps("receiveMessage", "sendBotMessage");
+    findByProps("showChangeLog");
+    findByProps("changeLog");
 });

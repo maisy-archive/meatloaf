@@ -6,8 +6,8 @@ import Toggle from "../components/Toggle";
 import patcher from "../lib/patcher";
 import webpackModules from "../lib/webpackModules";
 import reactUtils from "../lib/reactUtils";
-
 import showToast from "../lib/showToast";
+import changelog from "../lib/changelog";
 
 export default function registerGoosemodObj() {
     window.goosemod = {
@@ -21,6 +21,7 @@ export default function registerGoosemodObj() {
                 "text-and-button": TextAndButton
             }
         },
+        changelog: changelog,
         reactUtils: reactUtils,
         showToast: showToast,
         _SAPPHIRE: true
