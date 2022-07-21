@@ -20,8 +20,8 @@ function setChangelog(changelog) {
 }
 
 export default {
-    showChangelog: () => showChangeLog(),
-    hideChangelog: () => hideChangeLog(),
+    showChangelog: showChangeLog,
+    hideChangelog: hideChangeLog,
     setChangelog: setChangelog,
     resetChangelog: () => setChangelog(originalChangelog),
 }
