@@ -9,16 +9,12 @@ const apiObject = {
 
 // TODO: Make this better
 
-function unExposeObject() {
-    delete window.Meddle;
-}
-
 export default function exposeObject() {
     if(persist.ghost["generalExposeObject"] && !window.Meddle) {
         window.Meddle = apiObject;
     } else if (!persist.ghost["generalExposeObject"] && window.Meddle) {
-        unExposeObject();
+        delete window.Meddle;
     }
 
-    return unExposeObject;
+    return () => { delete window.Meddle };
 }
