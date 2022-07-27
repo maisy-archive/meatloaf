@@ -6,34 +6,13 @@ import Settings from "../Settings";
 import { SettingsView } from "../WPMODULES";
 
 import { dependPersist } from "cumcord-tools";
+import { registerSection } from "@cumcord/ui/userSettings"
 
 export default () => {
-    return findAndPatch(
-        () => SettingsView,
-        (SettingsView) =>
-            after("getPredicateSections", SettingsView.prototype, (_, ret) => {
-                if (ret[1]?.section != "My Account") return;
-
-                let index = ret.findIndex((e) => e.section == "changelog") - 1;
-
-                const meddleSettings = [
-                    {
-                        section: "DIVIDER",
-                    },
-                    {
-                        section: "HEADER",
-                        label: "Meddle",
-                    },
-                    {
-                        section: "beef_meddle_SETTINGS",
-                        label: "Settings",
-                        element: dependPersist(Settings),
-                    },
-                ];
-
-                ret.splice(index, 0, ...meddleSettings);
-
-                return ret;
-            })
-    );
+    // Logic to initialise Meddle settings with it's own header, should I choose to add it back
+    // const sections = [registerSection("DIVIDER"), registerSection("HEADER", "Meddle"), registerSection("MEDDLE", "Settings", dependPersist(Settings))];
+    // return () => {
+    //     _.forEachRight(sections, (s) => s());
+    // };
+    return registerSection("MEDDLE", "Meddle", dependPersist(Settings))
 };
