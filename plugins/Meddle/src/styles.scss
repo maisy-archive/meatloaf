@@ -37,6 +37,18 @@
     }
 }
 
+.beef-meddle-spotify-row {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center
+}
+
+.beef-meddle-spotify-column {
+    display: flex;
+    gap: 0.25rem;
+    flex-direction: column;
+}
+
 .beef-meddle-textbox-wrapper * {
     display: flex;
     flex-direction: column-reverse;

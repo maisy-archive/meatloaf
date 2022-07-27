@@ -10,7 +10,8 @@ export const [
     Switch,
     Button,
     { joinGuild },
-    { getCurrentUser }
+    { getCurrentUser },
+    TextInput,
 ] = batchFind(({ findByProps, findByDisplayName }) => {
     findByDisplayName("SettingsView");
     findByProps("dirtyDispatch");
@@ -22,4 +23,5 @@ export const [
     findByProps("Sizes", "Colors", "Looks", "DropdownSizes");
     findByProps("joinGuild");
     findByProps("getCurrentUser");
+    findByDisplayName("TextInput");
 });

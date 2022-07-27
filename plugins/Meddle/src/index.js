@@ -1,10 +1,10 @@
+import exposeObject from "./patches/exposeObject";
 import registerSettings from "./patches/registerSettings";
 import dispatchLogger from "./patches/dispatchLogger";
+import initDispatchEvents from "./patches/initDispatchEvents";
 
 import styles from "./styles.scss";
-
 import { setDefaults } from "cumcord-tools";
-import exposeObject from "./patches/exposeObject";
 
 setDefaults({
     dispatchLogEnabled: false,
@@ -23,6 +23,7 @@ const patches = [
     exposeObject(),
     registerSettings(),
     dispatchLogger(),
+    initDispatchEvents(),
     styles(),
 ];
 
