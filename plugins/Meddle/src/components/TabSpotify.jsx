@@ -3,111 +3,83 @@ import { spotifyStateNest } from "../events/spotifyPlayerState";
 import { useNest } from "@cumcord/utils";
 import SettingsButton from "./SettingsButton";
 
-// If anyone reads this, please don't judge me.
-// I'm sorry.
+// TODO: Tidy styling
 
 export default function SpotifySettings(props) {
     useNest(spotifyStateNest);
-    const spotifyData = spotifyStateNest.ghost.data;
 
-    const [songNameState, setSongNameState] = React.useState();
-    const [artistNameState, setArtistNameState] = React.useState();
-    const [albumNameState, setAlbumNameState] = React.useState();
-    const [positionState, setPositionState] = React.useState();
-    const [durationState, setDurationState] = React.useState();
-    const [playingState, setPlayingState] = React.useState();
-    const [imageUrlState, setImageUrlState] = React.useState();
+    const store = spotifyStateNest.store;
+    const ghost = spotifyStateNest.ghost;
 
-    if (!spotifyStateNest.songHasPlayed && !spotifyData.track) {
-        return <FormText>No song has played during Meddle's runtime. Either play a new song or modify the state of your current one.</FormText>
-    } else {
-        const songName = songNameState === undefined ? spotifyData.track.name : songNameState;
-        const artistNames = artistNameState === undefined ? spotifyData.track.artists.map(i => i.name).join(", ") : artistNameState;
-        const albumName = albumNameState === undefined ? spotifyData.track.album.name : albumNameState;
-        const position = positionState === undefined ? spotifyData.position : positionState
-        const duration = durationState === undefined ? spotifyData.track.duration : durationState
-        const playing = playingState === undefined ? spotifyData.isPlaying : playingState
-        const imageUrl = imageUrlState === undefined ? spotifyData.track.album.image.url : imageUrlState
-
-        return (
-            <div>
+    return (
+        <div>
+            <div className="beef-meddle-spotify-row">
                 <div className="beef-meddle-spotify-row">
-                    <div className="beef-meddle-spotify-row">
-                        <img src={spotifyData.track.album.image.url} height="120" width="120" />
-                        <div className="beef-meddle-spotify-column">
-                            <div className="beef-meddle-spotify-row">
-                                <div style={{ width: "0.75rem" }}/>
-                                <TextInput value={songName} onChange={(e) => { setSongNameState(e) }} />
-                            </div>
-                            <div className="beef-meddle-spotify-row">
-                                <FormText style={{ width: "0.75rem" }}>by</FormText>
-                                <TextInput value={artistNames} onChange={(e) => { setArtistNameState(e) }} />
-                            </div>
-                            <div className="beef-meddle-spotify-row">
-                                <FormText style={{ width: "0.75rem" }}>on</FormText>
-                                <TextInput value={albumName} onChange={(e) => { setAlbumNameState(e) }} />
-                            </div>
-                        </div>
-                    </div>
-
-                    <div className="beef-meddle-spotify-column" style={{ marginLeft: "auto" }}>
-                        <SettingsButton
-                            text="Dispatch"
-                            size="MEDIUM"
-                            func={async () => {
-                                FluxDispatcher.dispatch({
-                                    ...spotifyData,
-                                    isPlaying: playing,
-                                    position: position,
-                                    track: {
-                                        ...spotifyData.track,
-                                        name: songName,
-                                        album: {
-                                            ...spotifyData.track.album,
-                                            image: {
-                                                ...spotifyData.track.album.image,
-                                                url: imageUrl
-                                            },
-                                            name: albumName,
-                                        },
-                                        // TODO: Retain other data about artists
-                                        artists: artistNames.split(", ").map(i => ({ name: i, external_urls: {}, href: {}, id: "stub", type: "artist", url: "" })),
-                                    }
-                                })
-                            }}
-                        />
-                    </div>
-                </div>
-
-                <FormDivider className="beef-meddle-settings-divider" />
-
-                <div className="beef-meddle-spotify-row">
+                    <img src={ghost.track.album.image.url} height="120" width="120" />
                     <div className="beef-meddle-spotify-column">
                         <div className="beef-meddle-spotify-row">
-                            <FormText style={{ width: "3rem" }}>Position (ms)</FormText>
-                            <TextInput value={position} onChange={(e) => { setPositionState(e) }} />
+                            <div style={{ width: "0.75rem" }}/>
+                            <TextInput value={ghost.track.name} onChange={(e) => { store.track.name = e }} />
                         </div>
                         <div className="beef-meddle-spotify-row">
-                            <FormText style={{ width: "3rem" }}>Duration (ms)</FormText>
-                            <TextInput value={duration} onChange={(e) => { setDurationState(e) }} />
+                            <FormText style={{ width: "0.75rem" }}>by</FormText>
+                            <TextInput value={ghost.track.artists.map(e => e.name).join(", ")} onChange={(e) => { store.track.artists = e.split(", ").map(i => ({ name: i, external_urls: {}, href: {}, id: "stub", type: "artist", url: "Artist URL" })) }} />
+                        </div>
+                        <div className="beef-meddle-spotify-row">
+                            <FormText style={{ width: "0.75rem" }}>on</FormText>
+                            <TextInput value={ghost.track.album.name} onChange={(e) => { store.track.album.name = e }} />
                         </div>
                     </div>
-                    <div className="beef-meddle-spotify-row" style={{ marginLeft: "auto" }}>
-                        <FormText>Playing</FormText>
-                        <Switch
-                            checked={playing}
-                            onChange={(e) => { setPlayingState(e) }}
-                        />
-                    </div>
                 </div>
 
-                <FormDivider className="beef-meddle-settings-divider" />
-
-                <div className="beef-meddle-spotify-column">
-                    <FormText>Image URL</FormText>
-                    <TextInput value={imageUrl} onChange={(e) => { setImageUrlState(e) }} />
+                <div className="beef-meddle-spotify-column" style={{ marginLeft: "auto" }}>
+                    <SettingsButton
+                        text="Dispatch"
+                        size="MEDIUM"
+                        func={async () => {
+                            FluxDispatcher.dispatch({
+                                ...ghost,
+                                type: "SPOTIFY_PLAYER_STATE",
+                            })
+                        }}
+                    />
                 </div>
             </div>
-        )
-    }
+
+            <FormDivider className="beef-meddle-settings-divider" />
+
+            <div className="beef-meddle-spotify-row">
+                <div className="beef-meddle-spotify-column">
+                    <div className="beef-meddle-spotify-row">
+                        <FormText style={{ width: "3rem" }}>Position (ms)</FormText>
+                        <TextInput value={ghost.position} onChange={(e) => { store.position = e }} />
+                    </div>
+                    <div className="beef-meddle-spotify-row">
+                        <FormText style={{ width: "3rem" }}>Duration (ms)</FormText>
+                        <TextInput value={ghost.track.duration} onChange={(e) => { store.track.duration = e }} />
+                    </div>
+                </div>
+                <div className="beef-meddle-spotify-row" style={{ marginLeft: "auto" }}>
+                    <FormText>Playing</FormText>
+                    <Switch
+                        checked={ghost.isPlaying}
+                        onChange={(e) => { store.isPlaying = e }}
+                    />
+                </div>
+            </div>
+
+            <FormDivider className="beef-meddle-settings-divider" />
+
+            <div className="beef-meddle-spotify-column">
+                <FormText>Image URL (only supports <code>https://i.scdn.co/image/*</code> urls)</FormText>
+                <TextInput value={ghost.track.album.image.url} onChange={(e) => { store.track.album.image.url = e }} />
+            </div>
+
+            <FormDivider className="beef-meddle-settings-divider" />
+
+            <FormText className="beef-meddle-subtext">
+                If this is out of date/incorrect, try updating the current state of your Spotify player.
+            </FormText>
+        </div>
+    )
 }
