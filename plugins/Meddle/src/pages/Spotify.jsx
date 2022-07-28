@@ -42,8 +42,9 @@ export default function SpotifySettings(props) {
 
             <div className="beef-meddle-row">
                 <div className="beef-meddle-column">
-                    <Textbox fixedWidth="3rem" variant="row" value={ghost.position} onChange={(e) => { store.position = e }} >Position (ms)</Textbox>
-                    <Textbox fixedWidth="3rem" variant="row" value={ghost.track.duration} onChange={(e) => { store.track.duration = e }} >Duration (ms)</Textbox>
+                    {/* What. */}
+                    <Textbox fixedWidth="3rem" variant="row" value={ghost.position} onChange={(e) => { store.position = isNaN(e) || !e ? undefined : parseInt(e) }} >Position (ms)</Textbox>
+                    <Textbox fixedWidth="3rem" variant="row" value={ghost.track.duration} onChange={(e) => { store.track.duration = isNaN(e) || !e ? undefined : parseInt(e) }} >Duration (ms)</Textbox>
                 </div>
                 <div className="beef-meddle-row beef-meddle-center" style={{ marginLeft: "auto" }}>
                     <FormText>Playing</FormText>
