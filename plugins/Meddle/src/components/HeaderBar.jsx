@@ -17,6 +17,7 @@ export default function HeaderBar({ items }) {
                     className={TabBarClasses.tabBar}
                     selectedItem={current}
                     onItemSelect={goTo}
+                    style={{ marginBottom: "0.25rem" }}
                 >
                     {items.map((tab, index) => (
                         <TabBar.Item id={index}>{tab.text}</TabBar.Item>

@@ -63,32 +63,3 @@
 	align-items: center;
 	gap: 0.5rem;
 }
-
-.beef-meddle-tabbar {
-    padding: 0.25rem;
-    display: flex;
-    flex-direction: row;
-    gap: 0.5rem;
-
-    .beef-meddle-button * {
-        cursor: pointer;
-    }
-
-    * {
-        padding: 0.2rem;
-        border-radius: 0.3rem;
-        width: fit-content;
-        text-align: center;
-        background: none;
-    }
-
-    .beef-meddle-selected {
-        .theme-dark & {
-            background: #fff4;
-        }
-
-        .theme-light & {
-            background: #0003;
-        }
-    }
-}
