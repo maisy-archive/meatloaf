@@ -13,7 +13,7 @@ const [
     findByProps("getGuild");
     findByProps("getCurrentUser");
     findByProps("getUser");
-    findByProps("getMessage");
+    findByProps("getMessages");
     findByProps("getToken");
 });
 
