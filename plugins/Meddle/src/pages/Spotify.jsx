@@ -1,4 +1,4 @@
-import { FluxDispatcher, FormDivider, FormText, Switch } from "../WPMODULES";
+import { FluxDispatcher, FormDivider, FormText, ScrollerClasses, Switch, ActivityPopoutClasses, UserPopoutClasses, ActivityClasses, UserActivityContainer, getCurrentUser, findActivity } from "../WPMODULES";
 import { spotifyStateNest } from "../events/spotifyPlayerState";
 import { useNest } from "@cumcord/utils";
 import Button from "../components/Button";
@@ -64,6 +64,22 @@ export default function SpotifySettings(props) {
             <FormText className="beef-meddle-subtext">
                 If this is out of date/incorrect, try updating the current state of your Spotify player.
             </FormText>
+
+            <div className={`beef-meddle-preview ${[
+                UserPopoutClasses.userPopout,
+                UserPopoutClasses.body,
+                ScrollerClasses.scrollerBase,
+                ScrollerClasses.thin,
+                ActivityPopoutClasses.bodyInnerWrapper,
+                ActivityPopoutClasses.activity,
+                ActivityClasses.activityUserPopout
+                ].join(" ")}`}>
+                <UserActivityContainer
+                    type="UserPopout"
+                    user={getCurrentUser()}
+                    activity={findActivity((a) => a.type === constants.ActivityTypes.LISTENING)}
+                    />
+            </div>
         </div>
     )
 }

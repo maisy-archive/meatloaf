@@ -12,8 +12,15 @@ export const [
     TabBar,
     TabBarStyles,
     TabBarClasses,
+    UserActivityContainer,
+    UserPopoutClasses,
+    ActivityPopoutClasses,
+    ScrollerClasses,
+    ActivityClasses,
     { GuildFeatures },
     { joinGuild },
+    { getCurrentUser },
+    { findActivity }
 ] = batchFind(({ findByProps, findByDisplayName, findByDisplayNameAll }) => {
     findByDisplayName("SettingsView");
     findByProps("dirtyDispatch");
@@ -26,6 +33,13 @@ export const [
     findByDisplayName("TabBar");
     findByProps("topPill");
     findByProps("tabBar", "nowPlayingColumn");
+    findByDisplayName("UserActivityContainer");
+    findByProps("userPopout", "body");
+    findByProps("activity", "note");
+    findByProps("scrollerBase", "thin");
+    findByProps("contentImagesProfile");
     findByProps("GuildFeatures");
     findByProps("joinGuild");
+    findByProps("getCurrentUser");
+    findByProps("getApplicationActivities");
 });

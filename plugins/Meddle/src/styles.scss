@@ -56,3 +56,14 @@
 	align-items: center;
 	gap: 0.5rem;
 }
+
+.beef-meddle-preview {
+    width: 300px;
+    padding-top: 16px;
+    margin: 16px auto 0 auto;
+
+    div img {
+        top: 16px !important;
+        right: 16px !important;
+    }
+}
