@@ -20,7 +20,10 @@ export const [
     { GuildFeatures },
     { joinGuild },
     { getCurrentUser },
-    { findActivity }
+    { findActivity },
+    { SpotifyAPI },
+    { SpotifyEndpoints },
+    { getActiveSocketAndDevice },
 ] = batchFind(({ findByProps, findByDisplayName, findByDisplayNameAll }) => {
     findByDisplayName("SettingsView");
     findByProps("dirtyDispatch");
@@ -42,4 +45,7 @@ export const [
     findByProps("joinGuild");
     findByProps("getCurrentUser");
     findByProps("getApplicationActivities");
+    findByProps("SpotifyAPI");
+    findByProps("SpotifyEndpoints");
+    findByProps("getActiveSocketAndDevice");
 });
