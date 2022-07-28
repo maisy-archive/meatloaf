@@ -1,6 +1,6 @@
 import { nests } from "@cumcord/modules/internal";
 
-export const spotifyStateNest = nests.make({
+const exampleSpotifyState = {
     isPlaying: false,
     position: 0,
     track: {
@@ -22,11 +22,14 @@ export const spotifyStateNest = nests.make({
             url: "Artist URL"
         }],
     },
-});
+}
+
+// Make a nest with a clone of the example state
+export const spotifyStateNest = nests.make(Object.assign({}, exampleSpotifyState));
 
 export default function spotifyPlayerState(payload) {
-    // Assign data from the payload to the nest
+    // Assign data from the payload to the nest, checking if the data is non-null
     for (let k of Object.keys(spotifyStateNest.ghost)) {
-        spotifyStateNest.store[k] = payload[k];
+        spotifyStateNest.store[k] = (payload.track || payload.context) ? payload[k] : exampleSpotifyState[k];
     }
 }
