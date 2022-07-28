@@ -12,6 +12,9 @@ export const [
     { joinGuild },
     { getCurrentUser },
     TextInput,
+    TabBar,
+    TabBarStyles,
+    TabBarClasses,
 ] = batchFind(({ findByProps, findByDisplayName }) => {
     findByDisplayName("SettingsView");
     findByProps("dirtyDispatch");
@@ -24,4 +27,7 @@ export const [
     findByProps("joinGuild");
     findByProps("getCurrentUser");
     findByDisplayName("TextInput");
+    findByDisplayName("TabBar");
+    findByProps("topPill");
+    findByProps("tabBar", "nowPlayingColumn");
 });

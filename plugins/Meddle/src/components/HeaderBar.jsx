@@ -1,4 +1,4 @@
-import { FormText, FormDivider } from "../WPMODULES";
+import { FormDivider, TabBar, TabBarStyles, TabBarClasses } from "../WPMODULES";
 import SettingsTitle from "./SettingsTitle";
 import { ErrorBoundary } from "@cumcord/ui/components";
 
@@ -12,19 +12,16 @@ export default function HeaderBar({ items }) {
             <div className="beef-meddle-settings-section">
                 <SettingsTitle />
                 <FormDivider className="beef-meddle-settings-divider" />
-                <div className="beef-meddle-tabbar">
-                    {items.map((e, i) => (
-                        <button
-                            className={
-                                "beef-meddle-button" +
-                                (i === current ? " beef-meddle-selected" : "")
-                            }
-                            onClick={() => goTo(i)}
-                        >
-                            <FormText>{e.text}</FormText>
-                        </button>
+                <TabBar
+                    type={TabBarStyles.topPill}
+                    className={TabBarClasses.tabBar}
+                    selectedItem={current}
+                    onItemSelect={goTo}
+                >
+                    {items.map((tab, index) => (
+                        <TabBar.Item id={index}>{tab.text}</TabBar.Item>
                     ))}
-                </div>
+                </TabBar>
             </div>
 
 			<FormDivider className="beef-meddle-settings-divider" />
