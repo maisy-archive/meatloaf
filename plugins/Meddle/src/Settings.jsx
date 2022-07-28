@@ -1,10 +1,11 @@
 import { ErrorBoundary } from "@cumcord/ui/components";
 
 import HeaderBar from "./components/HeaderBar";
-import TabGeneral from "./components/TabGeneral";
-import TabDispatch from "./components/TabDispatch";
-import TabServers from "./components/TabServers";
-import TabSpotify from "./components/TabSpotify";
+
+import General from "./pages/General";
+import Dispatch from "./pages/Dispatch";
+import Servers from "./pages/Servers";
+import Spotify from "./pages/Spotify";
 
 export default function Settings(props) {
     return (
@@ -12,10 +13,10 @@ export default function Settings(props) {
             <div className="beef-meddle-settings">
                 <HeaderBar
 					items={[
-                        { text: "General", component: TabGeneral },
-						{ text: "FluxDispatcher", component: TabDispatch },
-                        { text: "Servers", component: TabServers },
-                        { text: "Spotify", component: TabSpotify },
+                        { text: "General", component: General },
+						{ text: "FluxDispatcher", component: Dispatch },
+                        { text: "Servers", component: Servers },
+                        { text: "Spotify", component: Spotify },
 					]}
 				/>
             </div>

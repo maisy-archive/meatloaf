@@ -9,15 +9,14 @@ export default function HeaderBar({ items }) {
 
 	return (
 		<div>
-            <div className="beef-meddle-settings-section">
+            <div className="beef-meddle-card">
                 <SettingsTitle />
-                <FormDivider className="beef-meddle-settings-divider" />
+                <FormDivider className="beef-meddle-divider" />
                 <TabBar
                     type={TabBarStyles.topPill}
                     className={TabBarClasses.tabBar}
                     selectedItem={current}
                     onItemSelect={goTo}
-                    style={{ marginBottom: "0.25rem" }}
                 >
                     {items.map((tab, index) => (
                         <TabBar.Item id={index}>{tab.text}</TabBar.Item>
@@ -25,9 +24,9 @@ export default function HeaderBar({ items }) {
                 </TabBar>
             </div>
 
-			<FormDivider className="beef-meddle-settings-divider" />
+			<FormDivider className="beef-meddle-divider" />
 
-            <div className="beef-meddle-settings-section beef-meddle-tabbar-content">
+            <div className="beef-meddle-settings-section beef-meddle-card">
                 <ErrorBoundary>
                     {React.createElement(items[current].component, { goTo })}
                 </ErrorBoundary>

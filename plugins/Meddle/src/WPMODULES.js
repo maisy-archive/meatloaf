@@ -15,7 +15,7 @@ export const [
     TabBar,
     TabBarStyles,
     TabBarClasses,
-] = batchFind(({ findByProps, findByDisplayName }) => {
+] = batchFind(({ findByProps, findByDisplayName, findByDisplayNameAll }) => {
     findByDisplayName("SettingsView");
     findByProps("dirtyDispatch");
     findByProps("GuildFeatures");

@@ -1,55 +1,39 @@
-// Settings
-.beef-meddle-settings {
-    .beef-meddle-settings-title {
-        h1 {
-            margin-bottom: 0.2rem;
-        }
-    }
-
-    .beef-meddle-settings-section {
-        padding: 1rem;
-        border-radius: 0.5rem;
-        background-color: var(--background-secondary);
-    }
-
-    .beef-meddle-settings-tab {
-        padding: 0.25rem;
-    }
-
-    .beef-meddle-settings-divider {
-        margin-top: 0.5rem;
-        margin-bottom: 1rem;
-    }
+// Utility styles
+.beef-meddle-row {
+    display: flex;
+    gap: 0.5rem;
 }
 
-// Generics
+.beef-meddle-column {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.beef-meddle-divider {
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
 .beef-meddle-subtext {
     font-size: x-small;
     color: var(--text-muted);
 }
 
-.beef-meddle-row {
-    display: flex;
-    gap: 1rem;
-
-    :not(:last-child) {
-        flex: 1;
-    }
+.beef-meddle-card {
+    padding: 1rem;
+    border-radius: 0.5rem;
+    background-color: var(--background-secondary);
 }
 
-.beef-meddle-spotify-row {
+.beef-meddle-center {
     display: flex;
-    gap: 0.5rem;
-    align-items: center
+    justify-content: center;
+    align-items: center;
 }
 
-.beef-meddle-spotify-column {
-    display: flex;
-    gap: 0.25rem;
-    flex-direction: column;
-}
-
-.beef-meddle-textbox-wrapper * {
+// Component styles
+.beef-meddle-persist-textbox-wrapper * {
     display: flex;
     flex-direction: column-reverse;
 
@@ -58,7 +42,16 @@
     }
 }
 
-.beef-meddle-switch-wrapper {
+.beef-meddle-persist-switch-wrapper {
+    display: flex;
+
+    * {
+        margin-bottom: 0 !important;
+        align-items: center;
+    }
+}
+
+.beef-meddle-switch {
 	display: flex;
 	align-items: center;
 	gap: 0.5rem;
