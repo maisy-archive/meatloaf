@@ -32,6 +32,13 @@
     align-items: center;
 }
 
+.beef-meddle-fullwidth {
+    width: 100%;
+    * {
+        width: 100%;
+    }
+}
+
 // Component styles
 .beef-meddle-persist-textbox-wrapper * {
     display: flex;
