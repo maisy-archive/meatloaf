@@ -55,8 +55,13 @@ export default function spotifyEventHandler() {
             if (spotifyNest.ghost.overrides.title.enabled) e.event.state.item.name = spotifyNest.ghost.overrides.title.value;
             if (spotifyNest.ghost.overrides.artists.enabled) {
                 const artists = spotifyNest.ghost.overrides.artists.value.split(",").map(a => a.trim());
+                const realArtists = e.event.state.item.artists;
                 for (const index in artists) {
-                    e.event.state.item.artists[index].name = artists[index];
+                    if (!realArtists[index]) realArtists[index] = {}
+                    realArtists[index].name = artists[index];
+                }
+                if (realArtists.length > artists.length) {
+                    realArtists.splice(artists.length, realArtists.length - artists.length);
                 }
             }
             if (spotifyNest.ghost.overrides.album.enabled) e.event.state.item.album.name = spotifyNest.ghost.overrides.album.value;
