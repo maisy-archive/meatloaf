@@ -1,4 +1,4 @@
-import { FluxDispatcher, FormDivider, FormText, ScrollerClasses, Switch, ActivityPopoutClasses, UserPopoutClasses, ActivityClasses, UserActivityContainer, getCurrentUser, findActivity } from "../WPMODULES";
+import { FluxDispatcher, FormDivider, FormText, ScrollerClasses, Switch, ActivityPopoutClasses, UserPopoutClasses, ActivityClasses, UserActivityContainer, getCurrentUser, findActivity, getActivity, shouldShowActivity, FormTitle } from "../WPMODULES";
 import { spotifyStateNest } from "../events/spotifyPlayerState";
 import { useNest } from "@cumcord/utils";
 import Button from "../components/Button";
@@ -12,7 +12,8 @@ export default function SpotifySettings(props) {
     const store = spotifyStateNest.store;
     const ghost = spotifyStateNest.ghost;
 
-    let activity = findActivity((a) => a.type === constants.ActivityTypes.LISTENING);
+    let activity = getActivity();
+    if (activity) activity.type = constants.ActivityTypes.LISTENING;
     const [, forceUpdate] = React.useReducer((n) => ~n, 0);
 
     return (
@@ -72,21 +73,44 @@ export default function SpotifySettings(props) {
 
             
             {
-                activity && (
-                    <div className={`beef-meddle-preview ${[
-                        UserPopoutClasses.userPopout,
-                        UserPopoutClasses.body,
-                        ScrollerClasses.scrollerBase,
-                        ScrollerClasses.thin,
-                        ActivityPopoutClasses.bodyInnerWrapper,
-                        ActivityPopoutClasses.activity,
-                        ActivityClasses.activityUserPopout
-                        ].join(" ")}`}>
-                        <UserActivityContainer
-                            type="UserPopout"
-                            user={getCurrentUser()}
-                            activity={activity}
-                            />
+                shouldShowActivity() && (
+                    <div className="beef-meddle-preview-container" style={{display:"flex"}}>
+                        <div className="beef-meddle-preview-unit">
+                            <FormTitle tag="h5">Live preview</FormTitle>
+                            <div className={`beef-meddle-preview ${[
+                                UserPopoutClasses.userPopout,
+                                UserPopoutClasses.body,
+                                ScrollerClasses.scrollerBase,
+                                ScrollerClasses.thin,
+                                ActivityPopoutClasses.bodyInnerWrapper,
+                                ActivityPopoutClasses.activity,
+                                ActivityClasses.activityUserPopout
+                                ].join(" ")}`}>
+                                <UserActivityContainer
+                                    type="UserPopout"
+                                    user={getCurrentUser()}
+                                    activity={activity}
+                                    />
+                            </div>
+                        </div>
+                        <div className="beef-meddle-preview-unit">
+                            <FormTitle tag="h5">Currently shown</FormTitle>
+                            <div className={`beef-meddle-preview ${[
+                                UserPopoutClasses.userPopout,
+                                UserPopoutClasses.body,
+                                ScrollerClasses.scrollerBase,
+                                ScrollerClasses.thin,
+                                ActivityPopoutClasses.bodyInnerWrapper,
+                                ActivityPopoutClasses.activity,
+                                ActivityClasses.activityUserPopout
+                                ].join(" ")}`}>
+                                <UserActivityContainer
+                                    type="UserPopout"
+                                    user={getCurrentUser()}
+                                    activity={findActivity((a) => a.type === constants.ActivityTypes.LISTENING)}
+                                    />
+                            </div>
+                        </div>
                     </div>
                 )
             }
