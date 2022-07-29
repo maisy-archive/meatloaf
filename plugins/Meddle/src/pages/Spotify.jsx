@@ -65,21 +65,26 @@ export default function SpotifySettings(props) {
                 If this is out of date/incorrect, try updating the current state of your Spotify player.
             </FormText>
 
-            <div className={`beef-meddle-preview ${[
-                UserPopoutClasses.userPopout,
-                UserPopoutClasses.body,
-                ScrollerClasses.scrollerBase,
-                ScrollerClasses.thin,
-                ActivityPopoutClasses.bodyInnerWrapper,
-                ActivityPopoutClasses.activity,
-                ActivityClasses.activityUserPopout
-                ].join(" ")}`}>
-                <UserActivityContainer
-                    type="UserPopout"
-                    user={getCurrentUser()}
-                    activity={findActivity((a) => a.type === constants.ActivityTypes.LISTENING)}
-                    />
-            </div>
+            
+            {
+                findActivity((a) => a.type === constants.ActivityTypes.LISTENING) && (
+                    <div className={`beef-meddle-preview ${[
+                        UserPopoutClasses.userPopout,
+                        UserPopoutClasses.body,
+                        ScrollerClasses.scrollerBase,
+                        ScrollerClasses.thin,
+                        ActivityPopoutClasses.bodyInnerWrapper,
+                        ActivityPopoutClasses.activity,
+                        ActivityClasses.activityUserPopout
+                        ].join(" ")}`}>
+                        <UserActivityContainer
+                            type="UserPopout"
+                            user={getCurrentUser()}
+                            activity={findActivity((a) => a.type === constants.ActivityTypes.LISTENING)}
+                            />
+                    </div>
+                )
+            }
         </div>
     )
 }
