@@ -17,13 +17,14 @@ export const [
     ActivityPopoutClasses,
     ScrollerClasses,
     ActivityClasses,
+    Slider,
     { GuildFeatures },
     { joinGuild },
     { getCurrentUser },
     { findActivity },
     { SpotifyAPI },
     { SpotifyEndpoints },
-    { getActiveSocketAndDevice, getActivity, shouldShowActivity },
+    { getActiveSocketAndDevice, shouldShowActivity },
 ] = batchFind(({ findByProps, findByDisplayName }) => {
     findByDisplayName("SettingsView");
     findByProps("dirtyDispatch");
@@ -41,6 +42,7 @@ export const [
     findByProps("activity", "note");
     findByProps("scrollerBase", "thin");
     findByProps("contentImagesProfile");
+    findByDisplayName("Slider");
     findByProps("GuildFeatures");
     findByProps("joinGuild");
     findByProps("getCurrentUser");
