@@ -32,11 +32,6 @@ export default function NewSpotifySettings() {
     return (
         <>
             <div className="beef-meddle-spotify">
-                {/* <FormText>Name: {spotifyNest.ghost.playerState.item.name}</FormText>
-                <FormText>Artist: {spotifyNest.ghost.playerState.item.artists[0].name}</FormText>
-                <FormText>Album: {spotifyNest.ghost.playerState.item.album.name}</FormText>
-                <FormText>Playing until: {new Date(spotifyNest.ghost.playerState.timestamp + spotifyNest.ghost.playerState.item.duration_ms - spotifyNest.ghost.playerState.progress_ms).toLocaleTimeString("de")}</FormText>
-                <FormText>Latest update: {new Date(spotifyNest.ghost.playerState.timestamp).toLocaleTimeString("de")}</FormText> */}
                 <img className="beef-meddle-spotify-cover" src={spotifyNest.ghost.overrides.cover.value}></img>
                 <div className="beef-meddle-spotify-details">
                     <Override id="title">Title</Override>
