@@ -1,5 +1,5 @@
 import { nests } from "@cumcord/modules/internal";
-import { getActiveSocketAndDevice, SpotifyAPI, SpotifyEndpoints } from "../WPMODULES";
+import { FluxDispatcher, getActiveSocketAndDevice, SpotifyAPI, SpotifyEndpoints } from "../WPMODULES";
 
 const exampleSpotifyState = {
     isPlaying: false,
@@ -58,6 +58,11 @@ if (socket !== undefined) {
         for (const k in res) {
             spotifyStateNest.store[k] = res[k];
         }
+
+        FluxDispatcher.dispatch({
+            ...spotifyStateNest.ghost,
+            type: "SPOTIFY_PLAYER_STATE",
+        });
     });
 }
 
