@@ -12,6 +12,9 @@ export default function SpotifySettings(props) {
     const store = spotifyStateNest.store;
     const ghost = spotifyStateNest.ghost;
 
+    let activity = findActivity((a) => a.type === constants.ActivityTypes.LISTENING);
+    const [, forceUpdate] = React.useReducer((n) => ~n, 0);
+
     return (
         <div>
             <div className="beef-meddle-row">
@@ -32,7 +35,9 @@ export default function SpotifySettings(props) {
                             FluxDispatcher.dispatch({
                                 ...ghost,
                                 type: "SPOTIFY_PLAYER_STATE",
-                            })
+                            });
+
+                            forceUpdate();
                         }}
                     />
                 </div>
@@ -67,7 +72,7 @@ export default function SpotifySettings(props) {
 
             
             {
-                findActivity((a) => a.type === constants.ActivityTypes.LISTENING) && (
+                activity && (
                     <div className={`beef-meddle-preview ${[
                         UserPopoutClasses.userPopout,
                         UserPopoutClasses.body,
@@ -80,7 +85,7 @@ export default function SpotifySettings(props) {
                         <UserActivityContainer
                             type="UserPopout"
                             user={getCurrentUser()}
-                            activity={findActivity((a) => a.type === constants.ActivityTypes.LISTENING)}
+                            activity={activity}
                             />
                     </div>
                 )
