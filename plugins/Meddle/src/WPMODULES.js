@@ -23,8 +23,8 @@ export const [
     { findActivity },
     { SpotifyAPI },
     { SpotifyEndpoints },
-    { getActiveSocketAndDevice },
-] = batchFind(({ findByProps, findByDisplayName, findByDisplayNameAll }) => {
+    { getActiveSocketAndDevice, getActivity, shouldShowActivity },
+] = batchFind(({ findByProps, findByDisplayName }) => {
     findByDisplayName("SettingsView");
     findByProps("dirtyDispatch");
     findByDisplayName("FormTitle");

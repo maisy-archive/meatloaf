@@ -64,10 +64,19 @@
 	gap: 0.5rem;
 }
 
+.beef-meddle-preview-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 16px;
+}
+
+.beef-meddle-preview-unit {
+    margin: 0 auto;
+}
+
 .beef-meddle-preview {
     width: 300px;
     padding-top: 16px;
-    margin: 16px auto 0 auto;
 
     div img {
         top: 16px !important;
