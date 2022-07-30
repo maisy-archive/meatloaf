@@ -20,13 +20,19 @@ export const [
     Slider,
     { GuildFeatures },
     { joinGuild },
-    { getCurrentUser },
     { findActivity },
+    { ActivityTypes },
     { SpotifyAPI },
     { SpotifyEndpoints },
     { SpotifySocket },
     { getActiveSocketAndDevice, shouldShowActivity },
-] = batchFind(({ findByProps, findByDisplayName }) => {
+    { getChannel },
+    { getGuild },
+    { getCurrentUser },
+    [, { getUser }],
+    { getMessage },
+    { getToken },
+] = batchFind(({ findByProps, findByPropsAll, findByDisplayName }) => {
     findByDisplayName("SettingsView");
     findByProps("dirtyDispatch");
     findByDisplayName("FormTitle");
@@ -46,10 +52,16 @@ export const [
     findByDisplayName("Slider");
     findByProps("GuildFeatures");
     findByProps("joinGuild");
-    findByProps("getCurrentUser");
     findByProps("getApplicationActivities");
+    findByProps("ActivityTypes")
     findByProps("SpotifyAPI");
     findByProps("SpotifyEndpoints");
     findByProps("SpotifySocket");
     findByProps("getActiveSocketAndDevice");
+    findByProps("hasChannel");
+    findByProps("getGuild");
+    findByProps("getCurrentUser");
+    findByPropsAll("getUser");
+    findByProps("getMessages");
+    findByProps("getToken");
 });

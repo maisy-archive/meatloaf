@@ -1,21 +1,5 @@
 import { persist } from "@cumcord/pluginData";
-import { batchFind } from "@cumcord/modules/webpack";
-
-const [
-    { getChannel },
-    { getGuild },
-    { getCurrentUser },
-    { getUser },
-    { getMessage },
-    { getToken },
-] = batchFind(({ findByProps, findByDisplayName, findByDisplayNameAll }) => {
-    findByProps("hasChannel");
-    findByProps("getGuild");
-    findByProps("getCurrentUser");
-    findByProps("getUser");
-    findByProps("getMessages");
-    findByProps("getToken");
-});
+import { getChannel, getGuild, getCurrentUser, getUser, getMessage, getToken } from "../WPMODULES";
 
 const apiObject = {
     modules: {
