@@ -6,6 +6,7 @@ import General from "./pages/General";
 import Dispatch from "./pages/Dispatch";
 import Servers from "./pages/Servers";
 import Spotify from "./pages/Spotify";
+import Snowflake from "./pages/Snowflake";
 
 export default function Settings(props) {
     return (
@@ -17,6 +18,7 @@ export default function Settings(props) {
 						{ text: "FluxDispatcher", component: Dispatch },
                         { text: "Servers", component: Servers },
                         { text: "Spotify", component: Spotify },
+                        { text: "Snowflake", component: Snowflake },
 					]}
 				/>
             </div>
