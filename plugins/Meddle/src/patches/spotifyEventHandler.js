@@ -1,9 +1,6 @@
 import { nests } from "@cumcord/modules/internal";
-import { findByProps } from "@cumcord/modules/webpack";
 import { instead } from "@cumcord/patcher";
-import { getActiveSocketAndDevice, SpotifyAPI, SpotifyEndpoints } from "../WPMODULES";
-
-const { SpotifySocket } = findByProps("SpotifySocket");
+import { getActiveSocketAndDevice, SpotifyAPI, SpotifyEndpoints, SpotifySocket } from "../WPMODULES";
 
 export const spotifyNest = nests.make({
     overrides: {

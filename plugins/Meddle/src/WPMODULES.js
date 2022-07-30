@@ -24,6 +24,7 @@ export const [
     { findActivity },
     { SpotifyAPI },
     { SpotifyEndpoints },
+    { SpotifySocket },
     { getActiveSocketAndDevice, shouldShowActivity },
 ] = batchFind(({ findByProps, findByDisplayName }) => {
     findByDisplayName("SettingsView");
@@ -49,5 +50,6 @@ export const [
     findByProps("getApplicationActivities");
     findByProps("SpotifyAPI");
     findByProps("SpotifyEndpoints");
+    findByProps("SpotifySocket");
     findByProps("getActiveSocketAndDevice");
 });

@@ -35,7 +35,7 @@ export default function NewSpotifySettings() {
                 <img className="beef-meddle-spotify-cover" src={spotifyNest.ghost.overrides.cover.value}></img>
                 <div className="beef-meddle-spotify-details">
                     <Override id="title">Title</Override>
-                    <Override id="artists">Artists (comma-seperated)</Override>
+                    <Override id="artists">Artists (comma-separated)</Override>
                     <Override id="album">Album</Override>
                 </div>
             </div>
