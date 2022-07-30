@@ -64,19 +64,57 @@
 	gap: 0.5rem;
 }
 
-.beef-meddle-preview-container {
+
+.beef-meddle-spotify {
     display: flex;
-    justify-content: center;
-    margin-top: 16px;
+    align-items: center;
 }
 
-.beef-meddle-preview-unit {
-    margin: 0 auto;
+.beef-meddle-spotify-cover {
+    width: 120px;
+    height: 120px;
 }
 
-.beef-meddle-preview {
+.beef-meddle-spotify-details {
+    margin-left: 10px;
+    width: 100%;
+}
+
+.beef-meddle-spotify-override {
+    margin-bottom: 8px;
+
+    div {
+        display: flex;
+        align-items: center;
+    }
+
+    input {
+        width: 100%;
+    }
+}
+
+.beef-meddle-spotify-override-input {
+    flex-grow: 1;
+    margin-right: 12px;
+}
+
+.beef-meddle-spotify-post-divider {
+    display: flex;
+}
+
+.beef-meddle-spotify-actions {
+    display: block;
+
+    button {
+        margin-bottom: 8px;
+        width: 100%;
+    }
+}
+
+.beef-meddle-spotify-preview {
     width: 300px;
     padding-top: 16px;
+    margin-left: auto;
 
     div img {
         top: 16px !important;

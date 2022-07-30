@@ -1,119 +1,149 @@
-import { FluxDispatcher, FormDivider, FormText, ScrollerClasses, Switch, ActivityPopoutClasses, UserPopoutClasses, ActivityClasses, UserActivityContainer, getCurrentUser, findActivity, getActivity, shouldShowActivity, FormTitle } from "../WPMODULES";
-import { spotifyStateNest } from "../events/spotifyPlayerState";
 import { useNest } from "@cumcord/utils";
-import Button from "../components/Button";
-import Textbox from "../components/Textbox";
+import { fetchState, forceEventUpdate, spotifyNest } from "../patches/spotifyEventHandler";
+import { FormDivider, FormTitle, Slider, Switch, TextInput, getCurrentUser, UserActivityContainer, ActivityClasses, ActivityPopoutClasses, ScrollerClasses, UserPopoutClasses, findActivity, FluxDispatcher, shouldShowActivity, Button } from "../WPMODULES";
 
-// TODO: Tidy styling
+export default function NewSpotifySettings() {
+    useNest(spotifyNest);
 
-export default function SpotifySettings(props) {
-    useNest(spotifyStateNest);
+    const [intermediate, setIntermediate] = React.useState(formatMillis(spotifyNest.ghost.overrides.time.duration));
 
-    const store = spotifyStateNest.store;
-    const ghost = spotifyStateNest.ghost;
+    const [activityKey, forceActivity] = React.useReducer((n) => ~n, 0);
+    const [sliderKey, forceSlider] = React.useReducer((n) => ~n, 0);
 
-    let activity = getActivity();
-    if (activity) activity.type = constants.ActivityTypes.LISTENING;
-    const [, forceUpdate] = React.useReducer((n) => ~n, 0);
+    React.useEffect(() => {
+        function fluxListener() {
+            forceActivity();
+        }
+
+        function nestListener(_, { path, value }) {
+            if (path.join(".") === "overrides.time.duration" && !spotifyNest.ghost.overrides.time.enabled) setIntermediate(formatMillis(value));
+            forceSlider();
+        }
+
+        FluxDispatcher.subscribe("SPOTIFY_PLAYER_STATE", fluxListener);
+        spotifyNest.on("SET", nestListener);
+
+        return () => {
+            FluxDispatcher.unsubscribe("SPOTIFY_PLAYER_STATE", fluxListener);
+            spotifyNest.off("SET", nestListener);
+        }
+    }, []);
 
     return (
-        <div>
-            <div className="beef-meddle-row">
-                <div className="beef-meddle-row beef-meddle-center">
-                    <img src={ghost.track.album.image.url} height="120" width="120" />
-                    <div className="beef-meddle-column">
-                        <Textbox fixedWidth="0.75rem" variant="row" value={ghost.track.name} onChange={(e) => { store.track.name = e }} />
-                        <Textbox fixedWidth="0.75rem" variant="row" value={ghost.track.artists.map(e => e.name).join(", ")} onChange={(e) => { store.track.artists = e.split(", ").map(i => ({ name: i, external_urls: {}, href: {}, id: "stub", type: "artist", url: "Artist URL" })) }} >by</Textbox>
-                        <Textbox fixedWidth="0.75rem" variant="row" value={ghost.track.album.name} onChange={(e) => { store.track.album.name = e }} >on</Textbox>
-                    </div>
-                </div>
-
-                <div className="beef-meddle-column" style={{ marginLeft: "auto" }}>
-                    <Button
-                        text="Dispatch"
-                        size="MEDIUM"
-                        func={async () => {
-                            FluxDispatcher.dispatch({
-                                ...ghost,
-                                type: "SPOTIFY_PLAYER_STATE",
-                            });
-
-                            forceUpdate();
-                        }}
-                    />
+        <>
+            <div className="beef-meddle-spotify">
+                <img className="beef-meddle-spotify-cover" src={spotifyNest.ghost.overrides.cover.value}></img>
+                <div className="beef-meddle-spotify-details">
+                    <Override id="title">Title</Override>
+                    <Override id="artists">Artists (comma-seperated)</Override>
+                    <Override id="album">Album</Override>
                 </div>
             </div>
 
-            <FormDivider className="beef-meddle-divider" />
+            <FormTitle>Progress</FormTitle>
+            <Slider
+                className="beef-meddle-spotify-slider-input"
+                minValue={0}
+                maxValue={spotifyNest.ghost.overrides.time.duration}
+                initialValue={spotifyNest.store.overrides.time.position}
+                handleSize={1}
+                keyboardStep={1}
+                onValueChange={(i) => spotifyNest.store.overrides.time.position = Math.floor(i || 0)}
+                onValueRender={renderValueMarker}
+                onMarkerRender={renderValueMarker}
+                disabled={!spotifyNest.ghost.overrides.time.enabled}
+                key={sliderKey}
+                />
 
-            <div className="beef-meddle-row">
-                <div className="beef-meddle-column">
-                    {/* What. */}
-                    <Textbox fixedWidth="3rem" variant="row" value={ghost.position} onChange={(e) => { store.position = isNaN(e) || !e ? undefined : parseInt(e) }} >Position (ms)</Textbox>
-                    <Textbox fixedWidth="3rem" variant="row" value={ghost.track.duration} onChange={(e) => { store.track.duration = isNaN(e) || !e ? undefined : parseInt(e) }} >Duration (ms)</Textbox>
-                </div>
-                <div className="beef-meddle-row beef-meddle-center" style={{ marginLeft: "auto" }}>
-                    <FormText>Playing</FormText>
+            <div className="beef-meddle-spotify-override">
+                <FormTitle>Duration (formatted as mm:ss)</FormTitle>
+                <div>
+                    <TextInput
+                        className="beef-meddle-spotify-override-input"
+                        value={intermediate}
+                        onChange={setIntermediate}
+                        onBlur={() => setIntermediate(formatMillis(spotifyNest.store.overrides.time.duration = parseMillis(intermediate)))}
+                        disabled={!spotifyNest.ghost.overrides.time.enabled}
+                        />
                     <Switch
-                        checked={ghost.isPlaying}
-                        onChange={(e) => { store.isPlaying = e }}
-                    />
+                        checked={spotifyNest.ghost.overrides.time.enabled}
+                        onChange={(i) => spotifyNest.store.overrides.time.enabled = i}
+                        />
                 </div>
             </div>
 
-            <FormDivider className="beef-meddle-divider" />
-
-            <Textbox value={ghost.track.album.image.url} onChange={(e) => { store.track.album.image.url = e }} >Image URL (only supports <code>https://i.scdn.co/image/*</code> urls)</Textbox>
+            <Override id="cover">Cover URL</Override>
 
             <FormDivider className="beef-meddle-divider" />
 
-            <FormText className="beef-meddle-subtext">
-                If this is out of date/incorrect, try updating the current state of your Spotify player.
-            </FormText>
-
-            
-            {
-                shouldShowActivity() && (
-                    <div className="beef-meddle-preview-container" style={{display:"flex"}}>
-                        <div className="beef-meddle-preview-unit">
-                            <FormTitle tag="h5">Live preview</FormTitle>
-                            <div className={`beef-meddle-preview ${[
-                                UserPopoutClasses.userPopout,
-                                UserPopoutClasses.body,
-                                ScrollerClasses.scrollerBase,
-                                ScrollerClasses.thin,
-                                ActivityPopoutClasses.bodyInnerWrapper,
-                                ActivityPopoutClasses.activity,
-                                ActivityClasses.activityUserPopout
-                                ].join(" ")}`}>
-                                <UserActivityContainer
-                                    type="UserPopout"
-                                    user={getCurrentUser()}
-                                    activity={activity}
-                                    />
-                            </div>
-                        </div>
-                        <div className="beef-meddle-preview-unit">
-                            <FormTitle tag="h5">Currently shown</FormTitle>
-                            <div className={`beef-meddle-preview ${[
-                                UserPopoutClasses.userPopout,
-                                UserPopoutClasses.body,
-                                ScrollerClasses.scrollerBase,
-                                ScrollerClasses.thin,
-                                ActivityPopoutClasses.bodyInnerWrapper,
-                                ActivityPopoutClasses.activity,
-                                ActivityClasses.activityUserPopout
-                                ].join(" ")}`}>
-                                <UserActivityContainer
-                                    type="UserPopout"
-                                    user={getCurrentUser()}
-                                    activity={findActivity((a) => a.type === constants.ActivityTypes.LISTENING)}
-                                    />
-                            </div>
-                        </div>
+            <div className="beef-meddle-spotify-post-divider">
+                <div className="beef-meddle-spotify-actions">
+                    <Button
+                        size={Button.Sizes.SMALL}
+                        onClick={() => forceEventUpdate()}>
+                            Force update
+                    </Button>
+                    <Button
+                        size={Button.Sizes.SMALL}
+                        onClick={() => fetchState()}>
+                            Refresh data
+                    </Button>
+                </div>
+                {
+                    shouldShowActivity() && <div className={`beef-meddle-spotify-preview ${[
+                        UserPopoutClasses.userPopout,
+                        UserPopoutClasses.body,
+                        ScrollerClasses.scrollerBase,
+                        ScrollerClasses.thin,
+                        ActivityPopoutClasses.bodyInnerWrapper,
+                        ActivityPopoutClasses.activity,
+                        ActivityClasses.activityUserPopout
+                        ].join(" ")}`}>
+                        <UserActivityContainer
+                            key={activityKey}
+                            type="UserPopout"
+                            user={getCurrentUser()}
+                            activity={findActivity((a) => a.type === constants.ActivityTypes.LISTENING)}
+                            />
                     </div>
-                )
-            }
+                }
+            </div>
+        </>
+    );
+}
+
+function renderValueMarker(i) {
+    return `${Math.floor(i / 60000)}m${Intl.NumberFormat(undefined, { minimumIntegerDigits: 2 }).format(Math.floor(i / 1000 % 60))}s`;
+}
+
+function formatMillis(i) {
+    return `${Math.floor(i / 60000)}:${Intl.NumberFormat(undefined, { minimumIntegerDigits: 2 }).format(Math.floor(i / 1000 % 60))}`;
+}
+
+function parseMillis(s) {
+    const time = padArray(s.split(':').filter(i => !!i).map(s => parseInt(s)), 2);
+
+    return (time[0] * 60 + time[1]) * 1000 || 1000;
+}
+
+const padArray = (arr, len) => Array(len).fill(0).concat(arr).slice(-(Math.max(len, arr.length)));
+
+function Override(props) {
+    return (
+        <div className="beef-meddle-spotify-override">
+            <FormTitle>{props.children}</FormTitle>
+            <div>
+                <TextInput
+                    className="beef-meddle-spotify-override-input"
+                    value={spotifyNest.ghost.overrides[props.id].value}
+                    onChange={(i) => spotifyNest.store.overrides[props.id].value = i}
+                    disabled={!spotifyNest.ghost.overrides[props.id].enabled}
+                    />
+                <Switch
+                    checked={spotifyNest.ghost.overrides[props.id].enabled}
+                    onChange={(i) => spotifyNest.store.overrides[props.id].enabled = i}
+                    />
+            </div>
         </div>
-    )
+    );
 }
