@@ -1,6 +1,6 @@
 import { useNest } from "@cumcord/utils";
 import { fetchState, forceEventUpdate, spotifyNest } from "../patches/spotifyEventHandler";
-import { FormDivider, FormTitle, Slider, Switch, TextInput, getCurrentUser, UserActivityContainer, ActivityClasses, ActivityPopoutClasses, ScrollerClasses, UserPopoutClasses, findActivity, FluxDispatcher, shouldShowActivity, Button } from "../WPMODULES";
+import { FormDivider, FormTitle, Slider, Switch, TextInput, getCurrentUser, UserActivityContainer, ActivityClasses, ActivityPopoutClasses, ScrollerClasses, UserPopoutClasses, findActivity, FluxDispatcher, shouldShowActivity, ActivityTypes, Button } from "../WPMODULES";
 
 export default function NewSpotifySettings() {
     useNest(spotifyNest);
@@ -103,8 +103,8 @@ export default function NewSpotifySettings() {
                             key={activityKey}
                             type="UserPopout"
                             user={getCurrentUser()}
-                            activity={findActivity((a) => a.type === constants.ActivityTypes.LISTENING)}
-                            />
+                            activity={findActivity((a) => a.type === ActivityTypes.LISTENING)}
+                        />
                     </div>
                 }
             </div>
