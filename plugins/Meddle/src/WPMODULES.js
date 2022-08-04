@@ -2,7 +2,6 @@ import { batchFind } from "@cumcord/modules/webpack";
 
 export const [
     SettingsView,
-    FluxDispatcher,
     FormTitle,
     FormText,
     FormDivider,
@@ -34,7 +33,6 @@ export const [
     { getToken },
 ] = batchFind(({ findByProps, findByPropsAll, findByDisplayName }) => {
     findByDisplayName("SettingsView");
-    findByProps("dirtyDispatch");
     findByDisplayName("FormTitle");
     findByDisplayName("FormText");
     findByDisplayName("FormDivider")
@@ -65,3 +63,5 @@ export const [
     findByProps("getMessages");
     findByProps("getToken");
 });
+
+export { FluxDispatcher } from "@cumcord/modules/common";
