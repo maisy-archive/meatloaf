@@ -6,7 +6,6 @@ export const [
     { MAX_ACCOUNTS },
     stream,
     { getAccounts },
-    FluxDispatcher,
     spotifyPlayer,
     { getCurrentUser }
 ] = batchFind(({ findByProps, findByDisplayName }) => {
@@ -15,7 +14,8 @@ export const [
     findByProps("MAX_ACCOUNTS");
     findByProps("ApplicationStreamFPSButtons");
     findByProps("getAccounts");
-    findByProps("dirtyDispatch");
     findByProps("SpotifyAPI");
     findByProps("getCurrentUser");
 });
+
+export { FluxDispatcher } from "@cumcord/modules/common";
