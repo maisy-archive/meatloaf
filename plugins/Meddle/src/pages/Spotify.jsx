@@ -2,10 +2,8 @@ import { useNest } from "@cumcord/utils";
 import { fetchState, forceEventUpdate, spotifyNest } from "../patches/spotifyEventHandler";
 import { FormDivider, FormTitle, Slider, Switch, TextInput, getCurrentUser, UserActivityContainer, ActivityClasses, ActivityPopoutClasses, ScrollerClasses, UserPopoutClasses, findActivity, FluxDispatcher, shouldShowActivity, ActivityTypes, Button } from "../WPMODULES";
 
-export default function NewSpotifySettings() {
+export default function SpotifySettings() {
     useNest(spotifyNest);
-
-    const [intermediate, setIntermediate] = React.useState(formatMillis(spotifyNest.ghost.overrides.time.duration));
 
     const [activityKey, forceActivity] = React.useReducer((n) => ~n, 0);
     const [sliderKey, forceSlider] = React.useReducer((n) => ~n, 0);
@@ -15,8 +13,7 @@ export default function NewSpotifySettings() {
             forceActivity();
         }
 
-        function nestListener(_, { path, value }) {
-            if (path.join(".") === "overrides.time.duration" && !spotifyNest.ghost.overrides.time.enabled) setIntermediate(formatMillis(value));
+        function nestListener() {
             forceSlider();
         }
 
@@ -44,7 +41,7 @@ export default function NewSpotifySettings() {
             <Slider
                 className="beef-meddle-spotify-slider-input"
                 minValue={0}
-                maxValue={spotifyNest.ghost.overrides.time.duration}
+                maxValue={Math.abs(spotifyNest.ghost.overrides.time.duration)}
                 initialValue={spotifyNest.store.overrides.time.position}
                 handleSize={1}
                 keyboardStep={1}
@@ -56,13 +53,12 @@ export default function NewSpotifySettings() {
                 />
 
             <div className="beef-meddle-spotify-override">
-                <FormTitle>Duration (formatted as mm:ss)</FormTitle>
+                <FormTitle>Duration (Seconds)</FormTitle>
                 <div>
                     <TextInput
                         className="beef-meddle-spotify-override-input"
-                        value={intermediate}
-                        onChange={setIntermediate}
-                        onBlur={() => setIntermediate(formatMillis(spotifyNest.store.overrides.time.duration = parseMillis(intermediate)))}
+                        value={Math.floor(spotifyNest.ghost.overrides.time.duration / 1000)}
+                        onChange={(d) => spotifyNest.store.overrides.time.duration = (parseInt(d) || 0) * 1000}
                         disabled={!spotifyNest.ghost.overrides.time.enabled}
                         />
                     <Switch
@@ -115,18 +111,6 @@ export default function NewSpotifySettings() {
 function renderValueMarker(i) {
     return `${Math.floor(i / 60000)}m${Intl.NumberFormat(undefined, { minimumIntegerDigits: 2 }).format(Math.floor(i / 1000 % 60))}s`;
 }
-
-function formatMillis(i) {
-    return `${Math.floor(i / 60000)}:${Intl.NumberFormat(undefined, { minimumIntegerDigits: 2 }).format(Math.floor(i / 1000 % 60))}`;
-}
-
-function parseMillis(s) {
-    const time = padArray(s.split(':').filter(i => !!i).map(s => parseInt(s)), 2);
-
-    return (time[0] * 60 + time[1]) * 1000 || 1000;
-}
-
-const padArray = (arr, len) => Array(len).fill(0).concat(arr).slice(-(Math.max(len, arr.length)));
 
 function Override(props) {
     return (

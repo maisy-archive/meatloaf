@@ -1,6 +1,9 @@
+import { FluxDispatcher } from "@cumcord/modules/common";
 import { nests } from "@cumcord/modules/internal";
 import { instead } from "@cumcord/patcher";
 import { getActiveSocketAndDevice, SpotifyAPI, SpotifyEndpoints, SpotifySocket } from "../WPMODULES";
+
+const patches = [];
 
 export const spotifyNest = nests.make({
     overrides: {
@@ -45,7 +48,7 @@ function updateNest(body) {
 export default function spotifyEventHandler() {
     fetchState();
 
-    return instead("handleEvent", SpotifySocket.prototype, ([e], orig) => {
+    patches.push(instead("handleEvent", SpotifySocket.prototype, ([e], orig) => {
         if (e.type === "PLAYER_STATE_CHANGED" && e.event !== null) {
             updateNest(e.event?.state);
 
@@ -70,7 +73,15 @@ export default function spotifyEventHandler() {
         }
 
         orig.apply(this, [e]);
-    });
+    }));
+
+    // Stop Discord from nulling invalid tracks
+    patches.push(instead("dispatch", FluxDispatcher, ([event], orig) => {
+        if (event.type === "SPOTIFY_PLAYER_STATE" && event.track === null) return;
+        orig.apply(this, [event]);
+    }));
+
+    return () => _.forEachRight(patches, (p) => p());
 }
 
 export function fetchState() {
