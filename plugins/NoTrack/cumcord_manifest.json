@@ -1,0 +1,7 @@
+{
+  "name": "NoTrack",
+  "description": "Blocks Discord's tracking. All of it. Port of https://github.com/discord-modifications/discord-utilities/blob/master/patches/no-track.js",
+  "author": "Beef & eternal",
+  "file": "src/index.js",
+  "license": "BSD-3-Clause"
+}
