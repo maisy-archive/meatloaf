@@ -8,6 +8,7 @@ import webpackModules from "../lib/webpackModules";
 import reactUtils from "../lib/reactUtils";
 import showToast from "../lib/showToast";
 import changelog from "../lib/changelog";
+import confirmDialog from "../lib/confirmDialog";
 
 export default function registerGoosemodObj() {
     window.goosemod = {
@@ -24,6 +25,7 @@ export default function registerGoosemodObj() {
         changelog: changelog,
         reactUtils: reactUtils,
         showToast: showToast,
+        confirmDialog: confirmDialog,
         _SAPPHIRE: true
     }
 
