@@ -1,7 +1,7 @@
 import webpack from "@cumcord/modules/webpack";
 import common from "@cumcord/modules/common";
 
-// Some of this is sourced from https://github.com/GooseMod/GooseMod/blob/master/src/util/discord/webpackModules.js since I simply could not get my own method working
+// Some of this is similar to https://github.com/GooseMod/GooseMod/blob/master/src/util/discord/webpackModules.js for obvious reasons
 
 const all = () => Object.keys(webpack.modules).map((x) => webpack.modules[x].exports).filter((x) => x);
 
@@ -13,34 +13,31 @@ const wrapFilter = (filter) => (mod) => {
     }
 };
 
-const find = (_filter, tryDefault = true) => {
+const doFind = (_filter, tryDefault) => {
     const filter = wrapFilter(_filter);
+    const found = [];
 
     for (const m of all()) {
-        if (tryDefault && m.default && filter(m.default)) return m.default;
-        if (filter(m)) return m;
-    }
-};
-
-const findAll = (_filter, tryDefault = true) => {
-    const filter = wrapFilter(_filter);
-    const out = [];
-
-    for (const m of all()) {
-        if (tryDefault && m.default && filter(m.default)) out.push(m.default);
-        if (filter(m)) out.push(m);
+        if (tryDefault && m.default && filter(m.default)) found.push(m.default);
+        if (filter(m)) found.push(m);
     }
 
-    return out;
+    return found;
 };
 
 export default {
     all: all,
-    common: common,
-    find: find,
-    findAll: findAll,
-    find: find,
-    findAll: findAll,
+    common: {
+        React: common.React,
+        ReactDOM: common.ReactDOM,
+        Flux: common.Flux,
+        FluxDispatcher: common.FluxDispatcher,
+        i18n: common.i18n,
+        channels: common.channels,
+        constants: common.constants,
+    },
+    find: (filter, tryDefault = true) => doFind(filter, tryDefault)[0],
+    findAll: (filter, tryDefault = true) => doFind(filter, tryDefault),
     findByDisplayName: webpack.findByDisplayName,
     findByDisplayNameAll: webpack.findByDisplayNameAll,
     findByModuleId: (id) => webpack.modules[id],
