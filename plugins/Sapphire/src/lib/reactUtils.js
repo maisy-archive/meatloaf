@@ -1,9 +1,9 @@
-import utils from "@cumcord/utils";
+import { findInReactTree, findInTree, getOwnerInstance, getReactInstance } from "@cumcord/utils";
 
 export default {
-    findInReactTree: utils.findInReactTree,
-    findInTree: utils.findInTree,
+    findInReactTree: findInReactTree,
+    findInTree: findInTree,
     getNodeInternals: (node) => node._reactInternalFiber || node._reactInternals,
-    getOwnerInstance: utils.getOwnerInstance,
-    getReactInstance: utils.getReactInstance,
+    getOwnerInstance: getOwnerInstance,
+    getReactInstance: getReactInstance,
 }
