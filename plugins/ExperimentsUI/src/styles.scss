@@ -1,0 +1,19 @@
+// Utility styles
+.beef-experiments-row {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.beef-experiments-column {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+// Component styles
+.beef-experiments-card {
+    display: flex;
+    flex-direction: column;
+    gap: 0.1rem;
+    padding: 1rem;
+}

@@ -1,0 +1,7 @@
+{
+  "name": "ExperimentsUI",
+  "description": "Replicates Discord's experiment UI.",
+  "author": "Beef",
+  "file": "src/index.js",
+  "license": "BSD-3-Clause"
+}
