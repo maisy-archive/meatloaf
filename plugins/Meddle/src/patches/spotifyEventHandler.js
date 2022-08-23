@@ -78,7 +78,7 @@ export default function spotifyEventHandler() {
     // Stop Discord from nulling invalid tracks
     patches.push(instead("dispatch", FluxDispatcher, ([event], orig) => {
         if (event.type === "SPOTIFY_PLAYER_STATE" && event.track === null)
-          return new Promise();
+          return new Promise((r) => r());
         return orig.apply(this, [event]);
     }));
 
