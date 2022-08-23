@@ -1,0 +1,7 @@
+{
+  "name": "Librarby",
+  "description": "A library for all things Cumcord",
+  "author": "BeeferBro",
+  "file": "src/index.js",
+  "license": "BSD-3-Clause"
+}
