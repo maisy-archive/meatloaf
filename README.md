@@ -1,10 +1,6 @@
 # Cumcord plugins
 
-This repo contains my [Cumcord](https://github.com/Cumcord/Cumcord/) plugins. To use them you should copy and paste a plugin's link following this basic format:
-
-https://beefers.github.io/meatloaf/PluginName
-  
-Alternatively, find all my plugins on the Cumdump.
+This repo contained my [Cumcord](https://github.com/Cumcord/Cumcord/) plugins. Now that Cumcord no longer works, I am leaving them here for preservation's sake.
 
 ---
 
